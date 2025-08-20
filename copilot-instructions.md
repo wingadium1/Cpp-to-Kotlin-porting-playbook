@@ -31,31 +31,9 @@ Purpose: Provide a reusable, model-aware workflow for porting C++ codebases to K
 - LST batch + verify: `lst/run_all.py`, `lst/verify.py`
 - LST → Markdown: `lst/to_md.py`, `lst/to_md_all.py`
 - Symbol index: `lst/index_symbols.py`
-- Accuracy (C++ vs Kotlin):
-  - C++ reference harness builder: `accuracy/setup_cpp_ref.py` → builds `cpp_ref`
-  - Kotlin CLI (writer/encoder under test): `kotlin-json-writer` (Gradle `installDist`)
-  - Comparator: `accuracy/compare.py`
+- LST structural comparator: `accuracy/lst_accuracy.py`
 
 Note: Projects may use different paths. Provide a mapping (see Project Mapping section) so these abstract commands resolve to real locations.
-
-## Accuracy Workflow (Required for Non-trivial Changes)
-1) Build C++ reference
-```sh
-python3 <accuracy>/setup_cpp_ref.py
-```
-2) Build Kotlin CLI
-```sh
-cd <kotlin_module>
-gradle -q installDist
-```
-3) Run comparator
-```sh
-python3 <accuracy>/compare.py --cases <accuracy>/cases.json
-```
-4) If diff found
-- Minimize repro; post the smallest JSON + cfg showing divergence.
-- Triage category: double formatting, string escaping (UTF‑8 vs \uXXXX), spacing, or structural.
-- Patch with focused changes and re-run comparator + unit tests.
 
 ## LST Workflow
 - One file
@@ -71,6 +49,12 @@ python3 <lst>/verify.py <lst_out>/*.lst.json
 python3 <lst>/to_md_all.py
 python3 <lst>/index_symbols.py --out <lst_out>/symbols.index.json
 ```
+
+## LST Accuracy (Structural Fidelity)
+- Goal: the converted Kotlin source should mirror the C++ structure when both are represented as LSTs.
+- Method: generate LSTs for source and ported files; compare with `accuracy/lst_accuracy.py`.
+- Mapping: normalize known symbol renames and ignore non-semantic tokens via a mapping file.
+- Signal: any structural diffs should be treated as regressions unless explicitly justified.
 
 ## Kotlin Porting Guidance (Behavioral Parity)
 - Builder options parity: indentation, YAML colon spacing, drop nulls, useSpecialFloats, emitUTF8, precision, precisionType.
@@ -103,17 +87,9 @@ python3 <lst>/index_symbols.py --out <lst_out>/symbols.index.json
 - `<cpp_harness_bin>`: expected harness binary path.
 - `<kotlin_bin>`: installed Kotlin binary path.
 
-Example mapping (this repository)
+Example mapping (generic template)
 - `<lst>` → `tools/lst`
 - `<lst_out>` → `tools/lst/out`
 - `<accuracy>` → `tools/accuracy`
-- `<kotlin_module>` → `tools/kotlin-json-writer`
-- `<cpp_harness_bin>` → `tools/accuracy/cpp_ref/build/cpp_ref`
-- `<kotlin_bin>` → `tools/kotlin-json-writer/build/install/kotlin-json-writer/bin/kotlin-json-writer`
-
-Example quick start (this repository)
-```sh
-python3 tools/accuracy/setup_cpp_ref.py
-cd tools/kotlin-json-writer && gradle -q installDist
-python3 tools/accuracy/compare.py --cases tools/accuracy/cases.json
-```
+- `<kotlin_module>` → `<path/to/your/kotlin/module>`
+ 

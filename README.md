@@ -7,7 +7,7 @@ This document outlines a semi-automated workflow for porting C++ code to Kotlin,
 The goal of this playbook is to provide a structured and repeatable process for porting C++ libraries to Kotlin, ensuring correctness and maintaining a high degree of fidelity to the original implementation. The process relies on:
 
 1.  **Lossless Semantic Trees (LSTs)**: We generate a detailed, lossless representation of the C++ source code. This provides a structured, machine-readable format that is easier to work with than raw source text.
-2.  **Accuracy-Checking Framework**: A testing harness that compares the output of the original C++ code and the ported Kotlin code to ensure they are functionally identical.
+2.  **Accuracy-Checking Framework**: Primarily LST-based structural comparison to ensure the converted Kotlin source mirrors the C++ structure; optionally, a runtime comparator can be used to confirm behavioral parity.
 3.  **Porting Template**: A template repository that can be used to quickly bootstrap a new porting project.
 
 ## Directory Structure
@@ -22,9 +22,7 @@ The following directories and files have been added to the repository to support
         -   `verify.py`: Verifies that the LST can be perfectly reconstructed back to the original source code.
         -   `index_symbols.py`: Creates an index of all symbols in the codebase.
     -   `accuracy/`: Tools for verifying the correctness of the ported code.
-        -   `compare.py`: Compares the output of the C++ and Kotlin implementations for a given set of inputs.
-        -   `cases.json`: A set of test cases to be used by the comparator.
-        -   `setup_cpp_ref.py`: A script to build the C++ reference implementation.
+        -   `lst_accuracy.py`: LST-based structural comparator (C++ vs Kotlin LSTs).
     -   `porting/`: Tools for managing the porting process itself.
         -   `bootstrap.py`: A script to initialize a new porting project from the template.
         -   `PROJECT_MAPPING.template.json`: A template for the project mapping file.
@@ -52,14 +50,13 @@ The porting process is as follows:
         ```
 3.  **Port the code**:
     -   Use the generated LSTs and the `copilot-instructions.md` to guide the process of porting the C++ code to Kotlin.
-4.  **Verify Accuracy**:
-    -   Build the C++ reference implementation:
+4.  **Verify Accuracy (Structural by default)**:
+    -   Compare C++ and Kotlin LSTs for structural fidelity:
         ```bash
-        python3 tools/accuracy/setup_cpp_ref.py
-        ```
-    -   Run the accuracy comparator:
-        ```bash
-        python3 tools/accuracy/compare.py --cases tools/accuracy/cases.json
+        python3 tools/accuracy/lst_accuracy.py \
+          --cpp-lst tools/lst/out/<cpp_file>.lst.json \
+          --kotlin-lst /path/to/kotlin/<file>.lst.json \
+          --mapping tools/porting/PROJECT_MAPPING.template.json
         ```
 5.  **Bootstrap a new project**:
     -   To start a new porting project, use the `porting` tools:
@@ -69,5 +66,6 @@ The porting process is as follows:
 
 ## Dependencies
 
--   Python 3.6+
--   `clang`
+-   Python 3.8+
+-   `clang` (if your LST generator requires it)
+-   CMake (optional, for building the runtime C++ harness if used)

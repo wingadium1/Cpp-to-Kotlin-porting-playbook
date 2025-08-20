@@ -1,30 +1,22 @@
-# Conversion Accuracy Playbook
+# LST Accuracy Tools (Structural Fidelity)
 
-Goal: Verify Kotlin port output matches C++ JsonCpp writer behavior across a corpus of inputs.
+Validate a C++ → Kotlin port by comparing the structure of the source and ported files via Lossless Semantic Trees (LSTs).
 
-Components:
-- `cpp_ref`: A tiny C++ harness that links JsonCpp from this repo and prints writer outputs for given JSON inputs and settings.
-- `kotlin_cli`: A small Kotlin program that uses our Kotlin writer and prints outputs for the same inputs.
-- `compare.py`: Runs both and diffs outputs. Reports mismatches with minimal repro.
+## Components
+- `lst_accuracy.py`: Tokenizes and compares LSTs between C++ and Kotlin to detect structural drift.
 
-## Quick Start
-
-1) Build C++ harness (requires CMake or any C++17 compiler):
+## Usage
+First, produce LSTs using the `tools/lst` workflow. Then run:
 ```sh
-python3 tools/accuracy/setup_cpp_ref.py
+python3 tools/accuracy/lst_accuracy.py \
+	--cpp-lst tools/lst/out/<cpp_file>.lst.json \
+	--kotlin-lst /path/to/kotlin/<file>.lst.json \
+	--mapping tools/porting/PROJECT_MAPPING.template.json
 ```
 
-2) Build Kotlin runner (Gradle):
-```sh
-cd tools/kotlin-json-writer
-gradle -q installDist
-```
+Non-zero exit indicates a structural token multiset mismatch. Use `--top` to limit diff output.
 
-3) Run comparator on sample cases:
-```sh
-python3 tools/accuracy/compare.py --cases tools/accuracy/cases.json
-```
-
-## Notes
-- The comparator passes JSON strings via stdin to each runner and collects output. Settings (precision, emitUTF8, special floats, indentation) are case-configurable.
-- For floating comparisons, string equality is required to ensure formatting parity.
+### Producing Kotlin-side LSTs
+This playbook is language-agnostic on the ported side. You can:
+- Generate LSTs using your Kotlin AST tooling and export to the same JSON-ish structure the tokenizer can read, or
+- Convert another structural representation into a JSON map/list structure with fields like `kind/type`, `name/identifier`, and nested arrays/objects. The comparator is schema-light and will extract signals from these common fields.

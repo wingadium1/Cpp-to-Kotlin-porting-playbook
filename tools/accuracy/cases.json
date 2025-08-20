@@ -1,0 +1,62 @@
+[
+  {
+    "name": "scalars-basic",
+    "json": {"a":1, "b":true, "c":null, "d":"x\n"},
+    "cfg": {"indentation":"  ", "precision":17, "precisionType":"significant", "emitUTF8":false, "useSpecialFloats":false}
+  },
+  {
+    "name": "floats-precision",
+    "json": {"x":1.5, "y":1.0, "z":1234567.0},
+    "cfg": {"indentation":"  ", "precision":3, "precisionType":"decimal", "emitUTF8":false}
+  },
+  {
+    "name": "utf8-emit",
+    "json": {"s":"héllø"},
+    "cfg": {"emitUTF8":true}
+  },
+  {
+    "name": "utf16-escape",
+    "json": {"s":"héllø"},
+    "cfg": {"emitUTF8":false}
+  },
+  {
+    "name": "yaml-colon-spacing",
+    "json": {"a":1,"b":2},
+    "cfg": {"enableYAMLCompatibility": true, "indentation":"  "}
+  },
+  {
+    "name": "drop-null",
+    "json": {"a":null, "b":1, "c":null},
+    "cfg": {"dropNullPlaceholders": true, "indentation":"  "}
+  },
+  {
+    "name": "arrays-wrap",
+    "json": {"arr":[1,2,3,4,5,6,7,8,9,10]},
+    "cfg": {"indentation":"  "}
+  },
+  {
+    "name": "special-floats",
+    "json": {"nan": "NaN", "pinf": "+Inf", "ninf": "-Inf"},
+    "cfg": {"useSpecialFloats":true}
+  },
+  {
+    "name": "nested-mix",
+    "json": {"o": {"a": [1, {"b": 2}, [3,4], {}], "z": []}},
+    "cfg": {"indentation":"  "}
+  },
+  {
+    "name": "large-ints",
+    "json": {"i64": 9223372036854775807, "u64": 18446744073709551615},
+    "cfg": {"indentation":"  "}
+  },
+  {
+    "name": "exponents",
+    "json": {"a": 1e0, "b": 1e-6, "c": 3.141592653589793},
+    "cfg": {"precision": 17, "precisionType": "significant"}
+  },
+  {
+    "name": "empty-containers",
+    "json": {"a": [], "b": {}},
+    "cfg": {"indentation":"  "}
+  }
+]

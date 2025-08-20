@@ -1,0 +1,9 @@
+{
+  "root": "<abs path to repo root or leave empty to auto-detect>",
+  "lst": "tools/lst",
+  "lst_out": "tools/lst/out",
+  "accuracy": "tools/accuracy",
+  "kotlin_module": "tools/kotlin-json-writer",
+  "cpp_harness_bin": "tools/accuracy/cpp_ref/build/cpp_ref",
+  "kotlin_bin": "tools/kotlin-json-writer/build/install/kotlin-json-writer/bin/kotlin-json-writer"
+}

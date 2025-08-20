@@ -1,0 +1,2240 @@
+{
+  "version": "0.1",
+  "file": "src/lib_json/json_writer.cpp",
+  "source_hash": "ffb0cac91aea2ce089d676626fafacad396cef9df2518b47938b0e49e105de9b",
+  "source_length": 36026,
+  "nodes": [
+    {
+      "kind": "other",
+      "name": null,
+      "span": {
+        "start_byte": 0,
+        "end_byte": 244,
+        "start_line": 1,
+        "end_line": 5
+      },
+      "header_span": null,
+      "body_span": null,
+      "header": null,
+      "text": "// Copyright 2011 Baptiste Lepilleur and The JsonCpp Authors\n// Distributed under MIT license, or public domain if desired and\n// recognized in your jurisdiction.\n// See file LICENSE for detail or copy at http://jsoncpp.sourceforge.net/LICENSE\n",
+      "children": []
+    },
+    {
+      "kind": "macro",
+      "name": null,
+      "span": {
+        "start_byte": 244,
+        "end_byte": 279,
+        "start_line": 5,
+        "end_line": 6
+      },
+      "header_span": null,
+      "body_span": null,
+      "header": null,
+      "text": "\n#if !defined(JSON_IS_AMALGAMATION)",
+      "children": []
+    },
+    {
+      "kind": "other",
+      "name": null,
+      "span": {
+        "start_byte": 279,
+        "end_byte": 280,
+        "start_line": 6,
+        "end_line": 7
+      },
+      "header_span": null,
+      "body_span": null,
+      "header": null,
+      "text": "\n",
+      "children": []
+    },
+    {
+      "kind": "include",
+      "name": "#include \"json_tool.h\"",
+      "span": {
+        "start_byte": 280,
+        "end_byte": 302,
+        "start_line": 7,
+        "end_line": 7
+      },
+      "header_span": null,
+      "body_span": null,
+      "header": null,
+      "text": "#include \"json_tool.h\"",
+      "children": []
+    },
+    {
+      "kind": "other",
+      "name": null,
+      "span": {
+        "start_byte": 302,
+        "end_byte": 303,
+        "start_line": 7,
+        "end_line": 8
+      },
+      "header_span": null,
+      "body_span": null,
+      "header": null,
+      "text": "\n",
+      "children": []
+    },
+    {
+      "kind": "include",
+      "name": "#include <json/writer.h>",
+      "span": {
+        "start_byte": 303,
+        "end_byte": 327,
+        "start_line": 8,
+        "end_line": 8
+      },
+      "header_span": null,
+      "body_span": null,
+      "header": null,
+      "text": "#include <json/writer.h>",
+      "children": []
+    },
+    {
+      "kind": "other",
+      "name": null,
+      "span": {
+        "start_byte": 327,
+        "end_byte": 328,
+        "start_line": 8,
+        "end_line": 9
+      },
+      "header_span": null,
+      "body_span": null,
+      "header": null,
+      "text": "\n",
+      "children": []
+    },
+    {
+      "kind": "macro",
+      "name": null,
+      "span": {
+        "start_byte": 328,
+        "end_byte": 371,
+        "start_line": 9,
+        "end_line": 9
+      },
+      "header_span": null,
+      "body_span": null,
+      "header": null,
+      "text": "#endif // if !defined(JSON_IS_AMALGAMATION)",
+      "children": []
+    },
+    {
+      "kind": "other",
+      "name": null,
+      "span": {
+        "start_byte": 371,
+        "end_byte": 372,
+        "start_line": 9,
+        "end_line": 10
+      },
+      "header_span": null,
+      "body_span": null,
+      "header": null,
+      "text": "\n",
+      "children": []
+    },
+    {
+      "kind": "include",
+      "name": "#include <algorithm>",
+      "span": {
+        "start_byte": 372,
+        "end_byte": 392,
+        "start_line": 10,
+        "end_line": 10
+      },
+      "header_span": null,
+      "body_span": null,
+      "header": null,
+      "text": "#include <algorithm>",
+      "children": []
+    },
+    {
+      "kind": "other",
+      "name": null,
+      "span": {
+        "start_byte": 392,
+        "end_byte": 393,
+        "start_line": 10,
+        "end_line": 11
+      },
+      "header_span": null,
+      "body_span": null,
+      "header": null,
+      "text": "\n",
+      "children": []
+    },
+    {
+      "kind": "include",
+      "name": "#include <cassert>",
+      "span": {
+        "start_byte": 393,
+        "end_byte": 411,
+        "start_line": 11,
+        "end_line": 11
+      },
+      "header_span": null,
+      "body_span": null,
+      "header": null,
+      "text": "#include <cassert>",
+      "children": []
+    },
+    {
+      "kind": "other",
+      "name": null,
+      "span": {
+        "start_byte": 411,
+        "end_byte": 412,
+        "start_line": 11,
+        "end_line": 12
+      },
+      "header_span": null,
+      "body_span": null,
+      "header": null,
+      "text": "\n",
+      "children": []
+    },
+    {
+      "kind": "include",
+      "name": "#include <cctype>",
+      "span": {
+        "start_byte": 412,
+        "end_byte": 429,
+        "start_line": 12,
+        "end_line": 12
+      },
+      "header_span": null,
+      "body_span": null,
+      "header": null,
+      "text": "#include <cctype>",
+      "children": []
+    },
+    {
+      "kind": "other",
+      "name": null,
+      "span": {
+        "start_byte": 429,
+        "end_byte": 430,
+        "start_line": 12,
+        "end_line": 13
+      },
+      "header_span": null,
+      "body_span": null,
+      "header": null,
+      "text": "\n",
+      "children": []
+    },
+    {
+      "kind": "include",
+      "name": "#include <cmath>",
+      "span": {
+        "start_byte": 430,
+        "end_byte": 446,
+        "start_line": 13,
+        "end_line": 13
+      },
+      "header_span": null,
+      "body_span": null,
+      "header": null,
+      "text": "#include <cmath>",
+      "children": []
+    },
+    {
+      "kind": "other",
+      "name": null,
+      "span": {
+        "start_byte": 446,
+        "end_byte": 447,
+        "start_line": 13,
+        "end_line": 14
+      },
+      "header_span": null,
+      "body_span": null,
+      "header": null,
+      "text": "\n",
+      "children": []
+    },
+    {
+      "kind": "include",
+      "name": "#include <cstdio>",
+      "span": {
+        "start_byte": 447,
+        "end_byte": 464,
+        "start_line": 14,
+        "end_line": 14
+      },
+      "header_span": null,
+      "body_span": null,
+      "header": null,
+      "text": "#include <cstdio>",
+      "children": []
+    },
+    {
+      "kind": "other",
+      "name": null,
+      "span": {
+        "start_byte": 464,
+        "end_byte": 465,
+        "start_line": 14,
+        "end_line": 15
+      },
+      "header_span": null,
+      "body_span": null,
+      "header": null,
+      "text": "\n",
+      "children": []
+    },
+    {
+      "kind": "include",
+      "name": "#include <cstring>",
+      "span": {
+        "start_byte": 465,
+        "end_byte": 483,
+        "start_line": 15,
+        "end_line": 15
+      },
+      "header_span": null,
+      "body_span": null,
+      "header": null,
+      "text": "#include <cstring>",
+      "children": []
+    },
+    {
+      "kind": "other",
+      "name": null,
+      "span": {
+        "start_byte": 483,
+        "end_byte": 484,
+        "start_line": 15,
+        "end_line": 16
+      },
+      "header_span": null,
+      "body_span": null,
+      "header": null,
+      "text": "\n",
+      "children": []
+    },
+    {
+      "kind": "include",
+      "name": "#include <iomanip>",
+      "span": {
+        "start_byte": 484,
+        "end_byte": 502,
+        "start_line": 16,
+        "end_line": 16
+      },
+      "header_span": null,
+      "body_span": null,
+      "header": null,
+      "text": "#include <iomanip>",
+      "children": []
+    },
+    {
+      "kind": "other",
+      "name": null,
+      "span": {
+        "start_byte": 502,
+        "end_byte": 503,
+        "start_line": 16,
+        "end_line": 17
+      },
+      "header_span": null,
+      "body_span": null,
+      "header": null,
+      "text": "\n",
+      "children": []
+    },
+    {
+      "kind": "include",
+      "name": "#include <memory>",
+      "span": {
+        "start_byte": 503,
+        "end_byte": 520,
+        "start_line": 17,
+        "end_line": 17
+      },
+      "header_span": null,
+      "body_span": null,
+      "header": null,
+      "text": "#include <memory>",
+      "children": []
+    },
+    {
+      "kind": "other",
+      "name": null,
+      "span": {
+        "start_byte": 520,
+        "end_byte": 521,
+        "start_line": 17,
+        "end_line": 18
+      },
+      "header_span": null,
+      "body_span": null,
+      "header": null,
+      "text": "\n",
+      "children": []
+    },
+    {
+      "kind": "include",
+      "name": "#include <set>",
+      "span": {
+        "start_byte": 521,
+        "end_byte": 535,
+        "start_line": 18,
+        "end_line": 18
+      },
+      "header_span": null,
+      "body_span": null,
+      "header": null,
+      "text": "#include <set>",
+      "children": []
+    },
+    {
+      "kind": "other",
+      "name": null,
+      "span": {
+        "start_byte": 535,
+        "end_byte": 536,
+        "start_line": 18,
+        "end_line": 19
+      },
+      "header_span": null,
+      "body_span": null,
+      "header": null,
+      "text": "\n",
+      "children": []
+    },
+    {
+      "kind": "include",
+      "name": "#include <sstream>",
+      "span": {
+        "start_byte": 536,
+        "end_byte": 554,
+        "start_line": 19,
+        "end_line": 19
+      },
+      "header_span": null,
+      "body_span": null,
+      "header": null,
+      "text": "#include <sstream>",
+      "children": []
+    },
+    {
+      "kind": "other",
+      "name": null,
+      "span": {
+        "start_byte": 554,
+        "end_byte": 555,
+        "start_line": 19,
+        "end_line": 20
+      },
+      "header_span": null,
+      "body_span": null,
+      "header": null,
+      "text": "\n",
+      "children": []
+    },
+    {
+      "kind": "include",
+      "name": "#include <utility>",
+      "span": {
+        "start_byte": 555,
+        "end_byte": 573,
+        "start_line": 20,
+        "end_line": 20
+      },
+      "header_span": null,
+      "body_span": null,
+      "header": null,
+      "text": "#include <utility>",
+      "children": []
+    },
+    {
+      "kind": "other",
+      "name": null,
+      "span": {
+        "start_byte": 573,
+        "end_byte": 574,
+        "start_line": 20,
+        "end_line": 21
+      },
+      "header_span": null,
+      "body_span": null,
+      "header": null,
+      "text": "\n",
+      "children": []
+    },
+    {
+      "kind": "macro",
+      "name": null,
+      "span": {
+        "start_byte": 574,
+        "end_byte": 596,
+        "start_line": 21,
+        "end_line": 22
+      },
+      "header_span": null,
+      "body_span": null,
+      "header": null,
+      "text": "\n#if defined(_MSC_VER)",
+      "children": []
+    },
+    {
+      "kind": "other",
+      "name": null,
+      "span": {
+        "start_byte": 596,
+        "end_byte": 647,
+        "start_line": 22,
+        "end_line": 24
+      },
+      "header_span": null,
+      "body_span": null,
+      "header": null,
+      "text": "\n// Disable warning about strdup being deprecated.\n",
+      "children": []
+    },
+    {
+      "kind": "macro",
+      "name": null,
+      "span": {
+        "start_byte": 647,
+        "end_byte": 678,
+        "start_line": 24,
+        "end_line": 24
+      },
+      "header_span": null,
+      "body_span": null,
+      "header": null,
+      "text": "#pragma warning(disable : 4996)",
+      "children": []
+    },
+    {
+      "kind": "other",
+      "name": null,
+      "span": {
+        "start_byte": 678,
+        "end_byte": 679,
+        "start_line": 24,
+        "end_line": 25
+      },
+      "header_span": null,
+      "body_span": null,
+      "header": null,
+      "text": "\n",
+      "children": []
+    },
+    {
+      "kind": "macro",
+      "name": null,
+      "span": {
+        "start_byte": 679,
+        "end_byte": 685,
+        "start_line": 25,
+        "end_line": 25
+      },
+      "header_span": null,
+      "body_span": null,
+      "header": null,
+      "text": "#endif",
+      "children": []
+    },
+    {
+      "kind": "other",
+      "name": null,
+      "span": {
+        "start_byte": 685,
+        "end_byte": 686,
+        "start_line": 25,
+        "end_line": 26
+      },
+      "header_span": null,
+      "body_span": null,
+      "header": null,
+      "text": "\n",
+      "children": []
+    },
+    {
+      "kind": "namespace",
+      "name": "Json",
+      "span": {
+        "start_byte": 686,
+        "end_byte": 36007,
+        "start_line": 26,
+        "end_line": 1201
+      },
+      "header_span": {
+        "start_byte": 686,
+        "end_byte": 702,
+        "start_line": 26,
+        "end_line": 27
+      },
+      "body_span": {
+        "start_byte": 702,
+        "end_byte": 36007,
+        "start_line": 27,
+        "end_line": 1201
+      },
+      "header": "\nnamespace Json ",
+      "text": "\nnamespace Json {\n\nusing StreamWriterPtr = std::unique_ptr<StreamWriter>;\n\nString valueToString(LargestInt value) {\n  UIntToStringBuffer buffer;\n  char* current = buffer + sizeof(buffer);\n  if (value == Value::minLargestInt) {\n    uintToString(LargestUInt(Value::maxLargestInt) + 1, current);\n    *--current = '-';\n  } else if (value < 0) {\n    uintToString(LargestUInt(-value), current);\n    *--current = '-';\n  } else {\n    uintToString(LargestUInt(value), current);\n  }\n  assert(current >= buffer);\n  return current;\n}\n\nString valueToString(LargestUInt value) {\n  UIntToStringBuffer buffer;\n  char* current = buffer + sizeof(buffer);\n  uintToString(value, current);\n  assert(current >= buffer);\n  return current;\n}\n\n#if defined(JSON_HAS_INT64)\n\nString valueToString(Int value) { return valueToString(LargestInt(value)); }\n\nString valueToString(UInt value) { return valueToString(LargestUInt(value)); }\n\n#endif // # if defined(JSON_HAS_INT64)\n\nnamespace {\nString valueToString(double value, bool useSpecialFloats,\n                     unsigned int precision, PrecisionType precisionType) {\n  // Print into the buffer. We need not request the alternative representation\n  // that always has a decimal point because JSON doesn't distinguish the\n  // concepts of reals and integers.\n  if (!std::isfinite(value)) {\n    if (std::isnan(value))\n      return useSpecialFloats ? \"NaN\" : \"null\";\n    if (value < 0)\n      return useSpecialFloats ? \"-Infinity\" : \"-1e+9999\";\n    return useSpecialFloats ? \"Infinity\" : \"1e+9999\";\n  }\n\n  String buffer(size_t(36), '\\0');\n  while (true) {\n    int len = jsoncpp_snprintf(\n        &*buffer.begin(), buffer.size(),\n        (precisionType == PrecisionType::significantDigits) ? \"%.*g\" : \"%.*f\",\n        precision, value);\n    assert(len >= 0);\n    auto wouldPrint = static_cast<size_t>(len);\n    if (wouldPrint >= buffer.size()) {\n      buffer.resize(wouldPrint + 1);\n      continue;\n    }\n    buffer.resize(wouldPrint);\n    break;\n  }\n\n  buffer.erase(fixNumericLocale(buffer.begin(), buffer.end()), buffer.end());\n\n  // try to ensure we preserve the fact that this was given to us as a double on\n  // input\n  if (buffer.find('.') == buffer.npos && buffer.find('e') == buffer.npos) {\n    buffer += \".0\";\n  }\n\n  // strip the zero padding from the right\n  if (precisionType == PrecisionType::decimalPlaces) {\n    buffer.erase(fixZerosInTheEnd(buffer.begin(), buffer.end(), precision),\n                 buffer.end());\n  }\n\n  return buffer;\n}\n} // namespace\n\nString valueToString(double value, unsigned int precision,\n                     PrecisionType precisionType) {\n  return valueToString(value, false, precision, precisionType);\n}\n\nString valueToString(bool value) { return value ? \"true\" : \"false\"; }\n\nstatic bool doesAnyCharRequireEscaping(char const* s, size_t n) {\n  assert(s || !n);\n\n  return std::any_of(s, s + n, [](unsigned char c) {\n    return c == '\\\\' || c == '\"' || c < 0x20 || c > 0x7F;\n  });\n}\n\nstatic unsigned int utf8ToCodepoint(const char*& s, const char* e) {\n  const unsigned int REPLACEMENT_CHARACTER = 0xFFFD;\n\n  unsigned int firstByte = static_cast<unsigned char>(*s);\n\n  if (firstByte < 0x80)\n    return firstByte;\n\n  if (firstByte < 0xE0) {\n    if (e - s < 2)\n      return REPLACEMENT_CHARACTER;\n\n    unsigned int calculated =\n        ((firstByte & 0x1F) << 6) | (static_cast<unsigned int>(s[1]) & 0x3F);\n    s += 1;\n    // oversized encoded characters are invalid\n    return calculated < 0x80 ? REPLACEMENT_CHARACTER : calculated;\n  }\n\n  if (firstByte < 0xF0) {\n    if (e - s < 3)\n      return REPLACEMENT_CHARACTER;\n\n    unsigned int calculated = ((firstByte & 0x0F) << 12) |\n                              ((static_cast<unsigned int>(s[1]) & 0x3F) << 6) |\n                              (static_cast<unsigned int>(s[2]) & 0x3F);\n    s += 2;\n    // surrogates aren't valid codepoints itself\n    // shouldn't be UTF-8 encoded\n    if (calculated >= 0xD800 && calculated <= 0xDFFF)\n      return REPLACEMENT_CHARACTER;\n    // oversized encoded characters are invalid\n    return calculated < 0x800 ? REPLACEMENT_CHARACTER : calculated;\n  }\n\n  if (firstByte < 0xF8) {\n    if (e - s < 4)\n      return REPLACEMENT_CHARACTER;\n\n    unsigned int calculated = ((firstByte & 0x07) << 18) |\n                              ((static_cast<unsigned int>(s[1]) & 0x3F) << 12) |\n                              ((static_cast<unsigned int>(s[2]) & 0x3F) << 6) |\n                              (static_cast<unsigned int>(s[3]) & 0x3F);\n    s += 3;\n    // oversized encoded characters are invalid\n    return calculated < 0x10000 ? REPLACEMENT_CHARACTER : calculated;\n  }\n\n  return REPLACEMENT_CHARACTER;\n}\n\nstatic const char hex2[] = \"000102030405060708090a0b0c0d0e0f\"\n                           \"101112131415161718191a1b1c1d1e1f\"\n                           \"202122232425262728292a2b2c2d2e2f\"\n                           \"303132333435363738393a3b3c3d3e3f\"\n                           \"404142434445464748494a4b4c4d4e4f\"\n                           \"505152535455565758595a5b5c5d5e5f\"\n                           \"606162636465666768696a6b6c6d6e6f\"\n                           \"707172737475767778797a7b7c7d7e7f\"\n                           \"808182838485868788898a8b8c8d8e8f\"\n                           \"909192939495969798999a9b9c9d9e9f\"\n                           \"a0a1a2a3a4a5a6a7a8a9aaabacadaeaf\"\n                           \"b0b1b2b3b4b5b6b7b8b9babbbcbdbebf\"\n                           \"c0c1c2c3c4c5c6c7c8c9cacbcccdcecf\"\n                           \"d0d1d2d3d4d5d6d7d8d9dadbdcdddedf\"\n                           \"e0e1e2e3e4e5e6e7e8e9eaebecedeeef\"\n                           \"f0f1f2f3f4f5f6f7f8f9fafbfcfdfeff\";\n\nstatic String toHex16Bit(unsigned int x) {\n  const unsigned int hi = (x >> 8) & 0xff;\n  const unsigned int lo = x & 0xff;\n  String result(4, ' ');\n  result[0] = hex2[2 * hi];\n  result[1] = hex2[2 * hi + 1];\n  result[2] = hex2[2 * lo];\n  result[3] = hex2[2 * lo + 1];\n  return result;\n}\n\nstatic void appendRaw(String& result, unsigned ch) {\n  result += static_cast<char>(ch);\n}\n\nstatic void appendHex(String& result, unsigned ch) {\n  result.append(\"\\\\u\").append(toHex16Bit(ch));\n}\n\nstatic String valueToQuotedStringN(const char* value, size_t length,\n                                   bool emitUTF8 = false) {\n  if (value == nullptr)\n    return \"\";\n\n  if (!doesAnyCharRequireEscaping(value, length))\n    return String(\"\\\"\") + value + \"\\\"\";\n  // We have to walk value and escape any special characters.\n  // Appending to String is not efficient, but this should be rare.\n  // (Note: forward slashes are *not* rare, but I am not escaping them.)\n  String::size_type maxsize = length * 2 + 3; // allescaped+quotes+NULL\n  String result;\n  result.reserve(maxsize); // to avoid lots of mallocs\n  result += \"\\\"\";\n  char const* end = value + length;\n  for (const char* c = value; c != end; ++c) {\n    switch (*c) {\n    case '\\\"':\n      result += \"\\\\\\\"\";\n      break;\n    case '\\\\':\n      result += \"\\\\\\\\\";\n      break;\n    case '\\b':\n      result += \"\\\\b\";\n      break;\n    case '\\f':\n      result += \"\\\\f\";\n      break;\n    case '\\n':\n      result += \"\\\\n\";\n      break;\n    case '\\r':\n      result += \"\\\\r\";\n      break;\n    case '\\t':\n      result += \"\\\\t\";\n      break;\n    // case '/':\n    // Even though \\/ is considered a legal escape in JSON, a bare\n    // slash is also legal, so I see no reason to escape it.\n    // (I hope I am not misunderstanding something.)\n    // blep notes: actually escaping \\/ may be useful in javascript to avoid </\n    // sequence.\n    // Should add a flag to allow this compatibility mode and prevent this\n    // sequence from occurring.\n    default: {\n      if (emitUTF8) {\n        unsigned codepoint = static_cast<unsigned char>(*c);\n        if (codepoint < 0x20) {\n          appendHex(result, codepoint);\n        } else {\n          appendRaw(result, codepoint);\n        }\n      } else {\n        unsigned codepoint = utf8ToCodepoint(c, end); // modifies `c`\n        if (codepoint < 0x20) {\n          appendHex(result, codepoint);\n        } else if (codepoint < 0x80) {\n          appendRaw(result, codepoint);\n        } else if (codepoint < 0x10000) {\n          // Basic Multilingual Plane\n          appendHex(result, codepoint);\n        } else {\n          // Extended Unicode. Encode 20 bits as a surrogate pair.\n          codepoint -= 0x10000;\n          appendHex(result, 0xd800 + ((codepoint >> 10) & 0x3ff));\n          appendHex(result, 0xdc00 + (codepoint & 0x3ff));\n        }\n      }\n    } break;\n    }\n  }\n  result += \"\\\"\";\n  return result;\n}\n\nString valueToQuotedString(const char* value) {\n  return valueToQuotedStringN(value, strlen(value));\n}\n\nString valueToQuotedString(const char* value, size_t length) {\n  return valueToQuotedStringN(value, length);\n}\n\n// Class Writer\n// //////////////////////////////////////////////////////////////////\nWriter::~Writer() = default;\n\n// Class FastWriter\n// //////////////////////////////////////////////////////////////////\n\nFastWriter::FastWriter()\n\n    = default;\n\nvoid FastWriter::enableYAMLCompatibility() { yamlCompatibilityEnabled_ = true; }\n\nvoid FastWriter::dropNullPlaceholders() { dropNullPlaceholders_ = true; }\n\nvoid FastWriter::omitEndingLineFeed() { omitEndingLineFeed_ = true; }\n\nString FastWriter::write(const Value& root) {\n  document_.clear();\n  writeValue(root);\n  if (!omitEndingLineFeed_)\n    document_ += '\\n';\n  return document_;\n}\n\nvoid FastWriter::writeValue(const Value& value) {\n  switch (value.type()) {\n  case nullValue:\n    if (!dropNullPlaceholders_)\n      document_ += \"null\";\n    break;\n  case intValue:\n    document_ += valueToString(value.asLargestInt());\n    break;\n  case uintValue:\n    document_ += valueToString(value.asLargestUInt());\n    break;\n  case realValue:\n    document_ += valueToString(value.asDouble());\n    break;\n  case stringValue: {\n    // Is NULL possible for value.string_? No.\n    char const* str;\n    char const* end;\n    bool ok = value.getString(&str, &end);\n    if (ok)\n      document_ += valueToQuotedStringN(str, static_cast<size_t>(end - str));\n    break;\n  }\n  case booleanValue:\n    document_ += valueToString(value.asBool());\n    break;\n  case arrayValue: {\n    document_ += '[';\n    ArrayIndex size = value.size();\n    for (ArrayIndex index = 0; index < size; ++index) {\n      if (index > 0)\n        document_ += ',';\n      writeValue(value[index]);\n    }\n    document_ += ']';\n  } break;\n  case objectValue: {\n    Value::Members members(value.getMemberNames());\n    document_ += '{';\n    for (auto it = members.begin(); it != members.end(); ++it) {\n      const String& name = *it;\n      if (it != members.begin())\n        document_ += ',';\n      document_ += valueToQuotedStringN(name.data(), name.length());\n      document_ += yamlCompatibilityEnabled_ ? \": \" : \":\";\n      writeValue(value[name]);\n    }\n    document_ += '}';\n  } break;\n  }\n}\n\n// Class StyledWriter\n// //////////////////////////////////////////////////////////////////\n\nStyledWriter::StyledWriter() = default;\n\nString StyledWriter::write(const Value& root) {\n  document_.clear();\n  addChildValues_ = false;\n  indentString_.clear();\n  writeCommentBeforeValue(root);\n  writeValue(root);\n  writeCommentAfterValueOnSameLine(root);\n  document_ += '\\n';\n  return document_;\n}\n\nvoid StyledWriter::writeValue(const Value& value) {\n  switch (value.type()) {\n  case nullValue:\n    pushValue(\"null\");\n    break;\n  case intValue:\n    pushValue(valueToString(value.asLargestInt()));\n    break;\n  case uintValue:\n    pushValue(valueToString(value.asLargestUInt()));\n    break;\n  case realValue:\n    pushValue(valueToString(value.asDouble()));\n    break;\n  case stringValue: {\n    // Is NULL possible for value.string_? No.\n    char const* str;\n    char const* end;\n    bool ok = value.getString(&str, &end);\n    if (ok)\n      pushValue(valueToQuotedStringN(str, static_cast<size_t>(end - str)));\n    else\n      pushValue(\"\");\n    break;\n  }\n  case booleanValue:\n    pushValue(valueToString(value.asBool()));\n    break;\n  case arrayValue:\n    writeArrayValue(value);\n    break;\n  case objectValue: {\n    Value::Members members(value.getMemberNames());\n    if (members.empty())\n      pushValue(\"{}\");\n    else {\n      writeWithIndent(\"{\");\n      indent();\n      auto it = members.begin();\n      for (;;) {\n        const String& name = *it;\n        const Value& childValue = value[name];\n        writeCommentBeforeValue(childValue);\n        writeWithIndent(valueToQuotedString(name.c_str(), name.size()));\n        document_ += \" : \";\n        writeValue(childValue);\n        if (++it == members.end()) {\n          writeCommentAfterValueOnSameLine(childValue);\n          break;\n        }\n        document_ += ',';\n        writeCommentAfterValueOnSameLine(childValue);\n      }\n      unindent();\n      writeWithIndent(\"}\");\n    }\n  } break;\n  }\n}\n\nvoid StyledWriter::writeArrayValue(const Value& value) {\n  size_t size = value.size();\n  if (size == 0)\n    pushValue(\"[]\");\n  else {\n    bool isArrayMultiLine = isMultilineArray(value);\n    if (isArrayMultiLine) {\n      writeWithIndent(\"[\");\n      indent();\n      bool hasChildValue = !childValues_.empty();\n      ArrayIndex index = 0;\n      for (;;) {\n        const Value& childValue = value[index];\n        writeCommentBeforeValue(childValue);\n        if (hasChildValue)\n          writeWithIndent(childValues_[index]);\n        else {\n          writeIndent();\n          writeValue(childValue);\n        }\n        if (++index == size) {\n          writeCommentAfterValueOnSameLine(childValue);\n          break;\n        }\n        document_ += ',';\n        writeCommentAfterValueOnSameLine(childValue);\n      }\n      unindent();\n      writeWithIndent(\"]\");\n    } else // output on a single line\n    {\n      assert(childValues_.size() == size);\n      document_ += \"[ \";\n      for (size_t index = 0; index < size; ++index) {\n        if (index > 0)\n          document_ += \", \";\n        document_ += childValues_[index];\n      }\n      document_ += \" ]\";\n    }\n  }\n}\n\nbool StyledWriter::isMultilineArray(const Value& value) {\n  ArrayIndex const size = value.size();\n  bool isMultiLine = size * 3 >= rightMargin_;\n  childValues_.clear();\n  for (ArrayIndex index = 0; index < size && !isMultiLine; ++index) {\n    const Value& childValue = value[index];\n    isMultiLine = ((childValue.isArray() || childValue.isObject()) &&\n                   !childValue.empty());\n  }\n  if (!isMultiLine) // check if line length > max line length\n  {\n    childValues_.reserve(size);\n    addChildValues_ = true;\n    ArrayIndex lineLength = 4 + (size - 1) * 2; // '[ ' + ', '*n + ' ]'\n    for (ArrayIndex index = 0; index < size; ++index) {\n      if (hasCommentForValue(value[index])) {\n        isMultiLine = true;\n      }\n      writeValue(value[index]);\n      lineLength += static_cast<ArrayIndex>(childValues_[index].length());\n    }\n    addChildValues_ = false;\n    isMultiLine = isMultiLine || lineLength >= rightMargin_;\n  }\n  return isMultiLine;\n}\n\nvoid StyledWriter::pushValue(const String& value) {\n  if (addChildValues_)\n    childValues_.push_back(value);\n  else\n    document_ += value;\n}\n\nvoid StyledWriter::writeIndent() {\n  if (!document_.empty()) {\n    char last = document_[document_.length() - 1];\n    if (last == ' ') // already indented\n      return;\n    if (last != '\\n') // Comments may add new-line\n      document_ += '\\n';\n  }\n  document_ += indentString_;\n}\n\nvoid StyledWriter::writeWithIndent(const String& value) {\n  writeIndent();\n  document_ += value;\n}\n\nvoid StyledWriter::indent() { indentString_ += String(indentSize_, ' '); }\n\nvoid StyledWriter::unindent() {\n  assert(indentString_.size() >= indentSize_);\n  indentString_.resize(indentString_.size() - indentSize_);\n}\n\nvoid StyledWriter::writeCommentBeforeValue(const Value& root) {\n  if (!root.hasComment(commentBefore))\n    return;\n\n  document_ += '\\n';\n  writeIndent();\n  const String& comment = root.getComment(commentBefore);\n  String::const_iterator iter = comment.begin();\n  while (iter != comment.end()) {\n    document_ += *iter;\n    if (*iter == '\\n' && ((iter + 1) != comment.end() && *(iter + 1) == '/'))\n      writeIndent();\n    ++iter;\n  }\n\n  // Comments are stripped of trailing newlines, so add one here\n  document_ += '\\n';\n}\n\nvoid StyledWriter::writeCommentAfterValueOnSameLine(const Value& root) {\n  if (root.hasComment(commentAfterOnSameLine))\n    document_ += \" \" + root.getComment(commentAfterOnSameLine);\n\n  if (root.hasComment(commentAfter)) {\n    document_ += '\\n';\n    document_ += root.getComment(commentAfter);\n    document_ += '\\n';\n  }\n}\n\nbool StyledWriter::hasCommentForValue(const Value& value) {\n  return value.hasComment(commentBefore) ||\n         value.hasComment(commentAfterOnSameLine) ||\n         value.hasComment(commentAfter);\n}\n\n// Class StyledStreamWriter\n// //////////////////////////////////////////////////////////////////\n\nStyledStreamWriter::StyledStreamWriter(String indentation)\n    : document_(nullptr), indentation_(std::move(indentation)),\n      addChildValues_(), indented_(false) {}\n\nvoid StyledStreamWriter::write(OStream& out, const Value& root) {\n  document_ = &out;\n  addChildValues_ = false;\n  indentString_.clear();\n  indented_ = true;\n  writeCommentBeforeValue(root);\n  if (!indented_)\n    writeIndent();\n  indented_ = true;\n  writeValue(root);\n  writeCommentAfterValueOnSameLine(root);\n  *document_ << \"\\n\";\n  document_ = nullptr; // Forget the stream, for safety.\n}\n\nvoid StyledStreamWriter::writeValue(const Value& value) {\n  switch (value.type()) {\n  case nullValue:\n    pushValue(\"null\");\n    break;\n  case intValue:\n    pushValue(valueToString(value.asLargestInt()));\n    break;\n  case uintValue:\n    pushValue(valueToString(value.asLargestUInt()));\n    break;\n  case realValue:\n    pushValue(valueToString(value.asDouble()));\n    break;\n  case stringValue: {\n    // Is NULL possible for value.string_? No.\n    char const* str;\n    char const* end;\n    bool ok = value.getString(&str, &end);\n    if (ok)\n      pushValue(valueToQuotedStringN(str, static_cast<size_t>(end - str)));\n    else\n      pushValue(\"\");\n    break;\n  }\n  case booleanValue:\n    pushValue(valueToString(value.asBool()));\n    break;\n  case arrayValue:\n    writeArrayValue(value);\n    break;\n  case objectValue: {\n    Value::Members members(value.getMemberNames());\n    if (members.empty())\n      pushValue(\"{}\");\n    else {\n      writeWithIndent(\"{\");\n      indent();\n      auto it = members.begin();\n      for (;;) {\n        const String& name = *it;\n        const Value& childValue = value[name];\n        writeCommentBeforeValue(childValue);\n        writeWithIndent(valueToQuotedString(name.c_str(), name.size()));\n        *document_ << \" : \";\n        writeValue(childValue);\n        if (++it == members.end()) {\n          writeCommentAfterValueOnSameLine(childValue);\n          break;\n        }\n        *document_ << \",\";\n        writeCommentAfterValueOnSameLine(childValue);\n      }\n      unindent();\n      writeWithIndent(\"}\");\n    }\n  } break;\n  }\n}\n\nvoid StyledStreamWriter::writeArrayValue(const Value& value) {\n  unsigned size = value.size();\n  if (size == 0)\n    pushValue(\"[]\");\n  else {\n    bool isArrayMultiLine = isMultilineArray(value);\n    if (isArrayMultiLine) {\n      writeWithIndent(\"[\");\n      indent();\n      bool hasChildValue = !childValues_.empty();\n      unsigned index = 0;\n      for (;;) {\n        const Value& childValue = value[index];\n        writeCommentBeforeValue(childValue);\n        if (hasChildValue)\n          writeWithIndent(childValues_[index]);\n        else {\n          if (!indented_)\n            writeIndent();\n          indented_ = true;\n          writeValue(childValue);\n          indented_ = false;\n        }\n        if (++index == size) {\n          writeCommentAfterValueOnSameLine(childValue);\n          break;\n        }\n        *document_ << \",\";\n        writeCommentAfterValueOnSameLine(childValue);\n      }\n      unindent();\n      writeWithIndent(\"]\");\n    } else // output on a single line\n    {\n      assert(childValues_.size() == size);\n      *document_ << \"[ \";\n      for (unsigned index = 0; index < size; ++index) {\n        if (index > 0)\n          *document_ << \", \";\n        *document_ << childValues_[index];\n      }\n      *document_ << \" ]\";\n    }\n  }\n}\n\nbool StyledStreamWriter::isMultilineArray(const Value& value) {\n  ArrayIndex const size = value.size();\n  bool isMultiLine = size * 3 >= rightMargin_;\n  childValues_.clear();\n  for (ArrayIndex index = 0; index < size && !isMultiLine; ++index) {\n    const Value& childValue = value[index];\n    isMultiLine = ((childValue.isArray() || childValue.isObject()) &&\n                   !childValue.empty());\n  }\n  if (!isMultiLine) // check if line length > max line length\n  {\n    childValues_.reserve(size);\n    addChildValues_ = true;\n    ArrayIndex lineLength = 4 + (size - 1) * 2; // '[ ' + ', '*n + ' ]'\n    for (ArrayIndex index = 0; index < size; ++index) {\n      if (hasCommentForValue(value[index])) {\n        isMultiLine = true;\n      }\n      writeValue(value[index]);\n      lineLength += static_cast<ArrayIndex>(childValues_[index].length());\n    }\n    addChildValues_ = false;\n    isMultiLine = isMultiLine || lineLength >= rightMargin_;\n  }\n  return isMultiLine;\n}\n\nvoid StyledStreamWriter::pushValue(const String& value) {\n  if (addChildValues_)\n    childValues_.push_back(value);\n  else\n    *document_ << value;\n}\n\nvoid StyledStreamWriter::writeIndent() {\n  // blep intended this to look at the so-far-written string\n  // to determine whether we are already indented, but\n  // with a stream we cannot do that. So we rely on some saved state.\n  // The caller checks indented_.\n  *document_ << '\\n' << indentString_;\n}\n\nvoid StyledStreamWriter::writeWithIndent(const String& value) {\n  if (!indented_)\n    writeIndent();\n  *document_ << value;\n  indented_ = false;\n}\n\nvoid StyledStreamWriter::indent() { indentString_ += indentation_; }\n\nvoid StyledStreamWriter::unindent() {\n  assert(indentString_.size() >= indentation_.size());\n  indentString_.resize(indentString_.size() - indentation_.size());\n}\n\nvoid StyledStreamWriter::writeCommentBeforeValue(const Value& root) {\n  if (!root.hasComment(commentBefore))\n    return;\n\n  if (!indented_)\n    writeIndent();\n  const String& comment = root.getComment(commentBefore);\n  String::const_iterator iter = comment.begin();\n  while (iter != comment.end()) {\n    *document_ << *iter;\n    if (*iter == '\\n' && ((iter + 1) != comment.end() && *(iter + 1) == '/'))\n      // writeIndent();  // would include newline\n      *document_ << indentString_;\n    ++iter;\n  }\n  indented_ = false;\n}\n\nvoid StyledStreamWriter::writeCommentAfterValueOnSameLine(const Value& root) {\n  if (root.hasComment(commentAfterOnSameLine))\n    *document_ << ' ' << root.getComment(commentAfterOnSameLine);\n\n  if (root.hasComment(commentAfter)) {\n    writeIndent();\n    *document_ << root.getComment(commentAfter);\n  }\n  indented_ = false;\n}\n\nbool StyledStreamWriter::hasCommentForValue(const Value& value) {\n  return value.hasComment(commentBefore) ||\n         value.hasComment(commentAfterOnSameLine) ||\n         value.hasComment(commentAfter);\n}\n\n//////////////////////////\n// BuiltStyledStreamWriter\n\n/// Scoped enums are not available until C++11.\nstruct CommentStyle {\n  /// Decide whether to write comments.\n  enum Enum {\n    None, ///< Drop all comments.\n    Most, ///< Recover odd behavior of previous versions (not implemented yet).\n    All   ///< Keep all comments.\n  };\n};\n\nstruct BuiltStyledStreamWriter : public StreamWriter {\n  BuiltStyledStreamWriter(String indentation, CommentStyle::Enum cs,\n                          String colonSymbol, String nullSymbol,\n                          String endingLineFeedSymbol, bool useSpecialFloats,\n                          bool emitUTF8, unsigned int precision,\n                          PrecisionType precisionType);\n  int write(Value const& root, OStream* sout) override;\n\nprivate:\n  void writeValue(Value const& value);\n  void writeArrayValue(Value const& value);\n  bool isMultilineArray(Value const& value);\n  void pushValue(String const& value);\n  void writeIndent();\n  void writeWithIndent(String const& value);\n  void indent();\n  void unindent();\n  void writeCommentBeforeValue(Value const& root);\n  void writeCommentAfterValueOnSameLine(Value const& root);\n  static bool hasCommentForValue(const Value& value);\n\n  using ChildValues = std::vector<String>;\n\n  ChildValues childValues_;\n  String indentString_;\n  unsigned int rightMargin_;\n  String indentation_;\n  CommentStyle::Enum cs_;\n  String colonSymbol_;\n  String nullSymbol_;\n  String endingLineFeedSymbol_;\n  bool addChildValues_ : 1;\n  bool indented_ : 1;\n  bool useSpecialFloats_ : 1;\n  bool emitUTF8_ : 1;\n  unsigned int precision_;\n  PrecisionType precisionType_;\n};\nBuiltStyledStreamWriter::BuiltStyledStreamWriter(\n    String indentation, CommentStyle::Enum cs, String colonSymbol,\n    String nullSymbol, String endingLineFeedSymbol, bool useSpecialFloats,\n    bool emitUTF8, unsigned int precision, PrecisionType precisionType)\n    : rightMargin_(74), indentation_(std::move(indentation)), cs_(cs),\n      colonSymbol_(std::move(colonSymbol)), nullSymbol_(std::move(nullSymbol)),\n      endingLineFeedSymbol_(std::move(endingLineFeedSymbol)),\n      addChildValues_(false), indented_(false),\n      useSpecialFloats_(useSpecialFloats), emitUTF8_(emitUTF8),\n      precision_(precision), precisionType_(precisionType) {}\nint BuiltStyledStreamWriter::write(Value const& root, OStream* sout) {\n  sout_ = sout;\n  addChildValues_ = false;\n  indented_ = true;\n  indentString_.clear();\n  writeCommentBeforeValue(root);\n  if (!indented_)\n    writeIndent();\n  indented_ = true;\n  writeValue(root);\n  writeCommentAfterValueOnSameLine(root);\n  *sout_ << endingLineFeedSymbol_;\n  sout_ = nullptr;\n  return 0;\n}\nvoid BuiltStyledStreamWriter::writeValue(Value const& value) {\n  switch (value.type()) {\n  case nullValue:\n    pushValue(nullSymbol_);\n    break;\n  case intValue:\n    pushValue(valueToString(value.asLargestInt()));\n    break;\n  case uintValue:\n    pushValue(valueToString(value.asLargestUInt()));\n    break;\n  case realValue:\n    pushValue(valueToString(value.asDouble(), useSpecialFloats_, precision_,\n                            precisionType_));\n    break;\n  case stringValue: {\n    // Is NULL is possible for value.string_? No.\n    char const* str;\n    char const* end;\n    bool ok = value.getString(&str, &end);\n    if (ok)\n      pushValue(\n          valueToQuotedStringN(str, static_cast<size_t>(end - str), emitUTF8_));\n    else\n      pushValue(\"\");\n    break;\n  }\n  case booleanValue:\n    pushValue(valueToString(value.asBool()));\n    break;\n  case arrayValue:\n    writeArrayValue(value);\n    break;\n  case objectValue: {\n    Value::Members members(value.getMemberNames());\n    if (members.empty())\n      pushValue(\"{}\");\n    else {\n      writeWithIndent(\"{\");\n      indent();\n      auto it = members.begin();\n      for (;;) {\n        String const& name = *it;\n        Value const& childValue = value[name];\n        writeCommentBeforeValue(childValue);\n        writeWithIndent(\n            valueToQuotedStringN(name.data(), name.length(), emitUTF8_));\n        *sout_ << colonSymbol_;\n        writeValue(childValue);\n        if (++it == members.end()) {\n          writeCommentAfterValueOnSameLine(childValue);\n          break;\n        }\n        *sout_ << \",\";\n        writeCommentAfterValueOnSameLine(childValue);\n      }\n      unindent();\n      writeWithIndent(\"}\");\n    }\n  } break;\n  }\n}\n\nvoid BuiltStyledStreamWriter::writeArrayValue(Value const& value) {\n  unsigned size = value.size();\n  if (size == 0)\n    pushValue(\"[]\");\n  else {\n    bool isMultiLine = (cs_ == CommentStyle::All) || isMultilineArray(value);\n    if (isMultiLine) {\n      writeWithIndent(\"[\");\n      indent();\n      bool hasChildValue = !childValues_.empty();\n      unsigned index = 0;\n      for (;;) {\n        Value const& childValue = value[index];\n        writeCommentBeforeValue(childValue);\n        if (hasChildValue)\n          writeWithIndent(childValues_[index]);\n        else {\n          if (!indented_)\n            writeIndent();\n          indented_ = true;\n          writeValue(childValue);\n          indented_ = false;\n        }\n        if (++index == size) {\n          writeCommentAfterValueOnSameLine(childValue);\n          break;\n        }\n        *sout_ << \",\";\n        writeCommentAfterValueOnSameLine(childValue);\n      }\n      unindent();\n      writeWithIndent(\"]\");\n    } else // output on a single line\n    {\n      assert(childValues_.size() == size);\n      *sout_ << \"[\";\n      if (!indentation_.empty())\n        *sout_ << \" \";\n      for (unsigned index = 0; index < size; ++index) {\n        if (index > 0)\n          *sout_ << ((!indentation_.empty()) ? \", \" : \",\");\n        *sout_ << childValues_[index];\n      }\n      if (!indentation_.empty())\n        *sout_ << \" \";\n      *sout_ << \"]\";\n    }\n  }\n}\n\nbool BuiltStyledStreamWriter::isMultilineArray(Value const& value) {\n  ArrayIndex const size = value.size();\n  bool isMultiLine = size * 3 >= rightMargin_;\n  childValues_.clear();\n  for (ArrayIndex index = 0; index < size && !isMultiLine; ++index) {\n    Value const& childValue = value[index];\n    isMultiLine = ((childValue.isArray() || childValue.isObject()) &&\n                   !childValue.empty());\n  }\n  if (!isMultiLine) // check if line length > max line length\n  {\n    childValues_.reserve(size);\n    addChildValues_ = true;\n    ArrayIndex lineLength = 4 + (size - 1) * 2; // '[ ' + ', '*n + ' ]'\n    for (ArrayIndex index = 0; index < size; ++index) {\n      if (hasCommentForValue(value[index])) {\n        isMultiLine = true;\n      }\n      writeValue(value[index]);\n      lineLength += static_cast<ArrayIndex>(childValues_[index].length());\n    }\n    addChildValues_ = false;\n    isMultiLine = isMultiLine || lineLength >= rightMargin_;\n  }\n  return isMultiLine;\n}\n\nvoid BuiltStyledStreamWriter::pushValue(String const& value) {\n  if (addChildValues_)\n    childValues_.push_back(value);\n  else\n    *sout_ << value;\n}\n\nvoid BuiltStyledStreamWriter::writeIndent() {\n  // blep intended this to look at the so-far-written string\n  // to determine whether we are already indented, but\n  // with a stream we cannot do that. So we rely on some saved state.\n  // The caller checks indented_.\n\n  if (!indentation_.empty()) {\n    // In this case, drop newlines too.\n    *sout_ << '\\n' << indentString_;\n  }\n}\n\nvoid BuiltStyledStreamWriter::writeWithIndent(String const& value) {\n  if (!indented_)\n    writeIndent();\n  *sout_ << value;\n  indented_ = false;\n}\n\nvoid BuiltStyledStreamWriter::indent() { indentString_ += indentation_; }\n\nvoid BuiltStyledStreamWriter::unindent() {\n  assert(indentString_.size() >= indentation_.size());\n  indentString_.resize(indentString_.size() - indentation_.size());\n}\n\nvoid BuiltStyledStreamWriter::writeCommentBeforeValue(Value const& root) {\n  if (cs_ == CommentStyle::None)\n    return;\n  if (!root.hasComment(commentBefore))\n    return;\n\n  if (!indented_)\n    writeIndent();\n  const String& comment = root.getComment(commentBefore);\n  String::const_iterator iter = comment.begin();\n  while (iter != comment.end()) {\n    *sout_ << *iter;\n    if (*iter == '\\n' && ((iter + 1) != comment.end() && *(iter + 1) == '/'))\n      // writeIndent();  // would write extra newline\n      *sout_ << indentString_;\n    ++iter;\n  }\n  indented_ = false;\n}\n\nvoid BuiltStyledStreamWriter::writeCommentAfterValueOnSameLine(\n    Value const& root) {\n  if (cs_ == CommentStyle::None)\n    return;\n  if (root.hasComment(commentAfterOnSameLine))\n    *sout_ << \" \" + root.getComment(commentAfterOnSameLine);\n\n  if (root.hasComment(commentAfter)) {\n    writeIndent();\n    *sout_ << root.getComment(commentAfter);\n  }\n}\n\n// static\nbool BuiltStyledStreamWriter::hasCommentForValue(const Value& value) {\n  return value.hasComment(commentBefore) ||\n         value.hasComment(commentAfterOnSameLine) ||\n         value.hasComment(commentAfter);\n}\n\n///////////////\n// StreamWriter\n\nStreamWriter::StreamWriter() : sout_(nullptr) {}\nStreamWriter::~StreamWriter() = default;\nStreamWriter::Factory::~Factory() = default;\nStreamWriterBuilder::StreamWriterBuilder() { setDefaults(&settings_); }\nStreamWriterBuilder::~StreamWriterBuilder() = default;\nStreamWriter* StreamWriterBuilder::newStreamWriter() const {\n  const String indentation = settings_[\"indentation\"].asString();\n  const String cs_str = settings_[\"commentStyle\"].asString();\n  const String pt_str = settings_[\"precisionType\"].asString();\n  const bool eyc = settings_[\"enableYAMLCompatibility\"].asBool();\n  const bool dnp = settings_[\"dropNullPlaceholders\"].asBool();\n  const bool usf = settings_[\"useSpecialFloats\"].asBool();\n  const bool emitUTF8 = settings_[\"emitUTF8\"].asBool();\n  unsigned int pre = settings_[\"precision\"].asUInt();\n  CommentStyle::Enum cs = CommentStyle::All;\n  if (cs_str == \"All\") {\n    cs = CommentStyle::All;\n  } else if (cs_str == \"None\") {\n    cs = CommentStyle::None;\n  } else {\n    throwRuntimeError(\"commentStyle must be 'All' or 'None'\");\n  }\n  PrecisionType precisionType(significantDigits);\n  if (pt_str == \"significant\") {\n    precisionType = PrecisionType::significantDigits;\n  } else if (pt_str == \"decimal\") {\n    precisionType = PrecisionType::decimalPlaces;\n  } else {\n    throwRuntimeError(\"precisionType must be 'significant' or 'decimal'\");\n  }\n  String colonSymbol = \" : \";\n  if (eyc) {\n    colonSymbol = \": \";\n  } else if (indentation.empty()) {\n    colonSymbol = \":\";\n  }\n  String nullSymbol = \"null\";\n  if (dnp) {\n    nullSymbol.clear();\n  }\n  if (pre > 17)\n    pre = 17;\n  String endingLineFeedSymbol;\n  return new BuiltStyledStreamWriter(indentation, cs, colonSymbol, nullSymbol,\n                                     endingLineFeedSymbol, usf, emitUTF8, pre,\n                                     precisionType);\n}\n\nbool StreamWriterBuilder::validate(Json::Value* invalid) const {\n  static const auto& valid_keys = *new std::set<String>{\n      \"indentation\",\n      \"commentStyle\",\n      \"enableYAMLCompatibility\",\n      \"dropNullPlaceholders\",\n      \"useSpecialFloats\",\n      \"emitUTF8\",\n      \"precision\",\n      \"precisionType\",\n  };\n  for (auto si = settings_.begin(); si != settings_.end(); ++si) {\n    auto key = si.name();\n    if (valid_keys.count(key))\n      continue;\n    if (invalid)\n      (*invalid)[key] = *si;\n    else\n      return false;\n  }\n  return invalid ? invalid->empty() : true;\n}\n\nValue& StreamWriterBuilder::operator[](const String& key) {\n  return settings_[key];\n}\n// static\nvoid StreamWriterBuilder::setDefaults(Json::Value* settings) {\n  //! [StreamWriterBuilderDefaults]\n  (*settings)[\"commentStyle\"] = \"All\";\n  (*settings)[\"indentation\"] = \"\\t\";\n  (*settings)[\"enableYAMLCompatibility\"] = false;\n  (*settings)[\"dropNullPlaceholders\"] = false;\n  (*settings)[\"useSpecialFloats\"] = false;\n  (*settings)[\"emitUTF8\"] = false;\n  (*settings)[\"precision\"] = 17;\n  (*settings)[\"precisionType\"] = \"significant\";\n  //! [StreamWriterBuilderDefaults]\n}\n\nString writeString(StreamWriter::Factory const& factory, Value const& root) {\n  OStringStream sout;\n  StreamWriterPtr const writer(factory.newStreamWriter());\n  writer->write(root, &sout);\n  return std::move(sout).str();\n}\n\nOStream& operator<<(OStream& sout, Value const& root) {\n  StreamWriterBuilder builder;\n  StreamWriterPtr const writer(builder.newStreamWriter());\n  writer->write(root, &sout);\n  return sout;\n}\n\n}",
+      "children": [
+        {
+          "kind": "using",
+          "name": null,
+          "span": {
+            "start_byte": 704,
+            "end_byte": 759,
+            "start_line": 28,
+            "end_line": 29
+          },
+          "header_span": null,
+          "body_span": null,
+          "header": null,
+          "text": "\nusing StreamWriterPtr = std::unique_ptr<StreamWriter>;",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "valueToString",
+          "span": {
+            "start_byte": 760,
+            "end_byte": 1207,
+            "start_line": 30,
+            "end_line": 45
+          },
+          "header_span": {
+            "start_byte": 760,
+            "end_byte": 800,
+            "start_line": 30,
+            "end_line": 31
+          },
+          "body_span": {
+            "start_byte": 800,
+            "end_byte": 1207,
+            "start_line": 31,
+            "end_line": 45
+          },
+          "header": "\nString valueToString(LargestInt value) ",
+          "text": "\nString valueToString(LargestInt value) {\n  UIntToStringBuffer buffer;\n  char* current = buffer + sizeof(buffer);\n  if (value == Value::minLargestInt) {\n    uintToString(LargestUInt(Value::maxLargestInt) + 1, current);\n    *--current = '-';\n  } else if (value < 0) {\n    uintToString(LargestUInt(-value), current);\n    *--current = '-';\n  } else {\n    uintToString(LargestUInt(value), current);\n  }\n  assert(current >= buffer);\n  return current;\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "valueToString",
+          "span": {
+            "start_byte": 1208,
+            "end_byte": 1403,
+            "start_line": 46,
+            "end_line": 53
+          },
+          "header_span": {
+            "start_byte": 1208,
+            "end_byte": 1249,
+            "start_line": 46,
+            "end_line": 47
+          },
+          "body_span": {
+            "start_byte": 1249,
+            "end_byte": 1403,
+            "start_line": 47,
+            "end_line": 53
+          },
+          "header": "\nString valueToString(LargestUInt value) ",
+          "text": "\nString valueToString(LargestUInt value) {\n  UIntToStringBuffer buffer;\n  char* current = buffer + sizeof(buffer);\n  uintToString(value, current);\n  assert(current >= buffer);\n  return current;\n}",
+          "children": []
+        },
+        {
+          "kind": "macro",
+          "name": null,
+          "span": {
+            "start_byte": 1404,
+            "end_byte": 1432,
+            "start_line": 54,
+            "end_line": 55
+          },
+          "header_span": null,
+          "body_span": null,
+          "header": null,
+          "text": "\n#if defined(JSON_HAS_INT64)",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "valueToString",
+          "span": {
+            "start_byte": 1433,
+            "end_byte": 1510,
+            "start_line": 56,
+            "end_line": 57
+          },
+          "header_span": {
+            "start_byte": 1433,
+            "end_byte": 1466,
+            "start_line": 56,
+            "end_line": 57
+          },
+          "body_span": {
+            "start_byte": 1466,
+            "end_byte": 1510,
+            "start_line": 57,
+            "end_line": 57
+          },
+          "header": "\nString valueToString(Int value) ",
+          "text": "\nString valueToString(Int value) { return valueToString(LargestInt(value)); }",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "valueToString",
+          "span": {
+            "start_byte": 1511,
+            "end_byte": 1590,
+            "start_line": 58,
+            "end_line": 59
+          },
+          "header_span": {
+            "start_byte": 1511,
+            "end_byte": 1545,
+            "start_line": 58,
+            "end_line": 59
+          },
+          "body_span": {
+            "start_byte": 1545,
+            "end_byte": 1590,
+            "start_line": 59,
+            "end_line": 59
+          },
+          "header": "\nString valueToString(UInt value) ",
+          "text": "\nString valueToString(UInt value) { return valueToString(LargestUInt(value)); }",
+          "children": []
+        },
+        {
+          "kind": "macro",
+          "name": null,
+          "span": {
+            "start_byte": 1591,
+            "end_byte": 1630,
+            "start_line": 60,
+            "end_line": 61
+          },
+          "header_span": null,
+          "body_span": null,
+          "header": null,
+          "text": "\n#endif // # if defined(JSON_HAS_INT64)",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "valueToString",
+          "span": {
+            "start_byte": 1644,
+            "end_byte": 3157,
+            "start_line": 64,
+            "end_line": 108
+          },
+          "header_span": {
+            "start_byte": 1644,
+            "end_byte": 1776,
+            "start_line": 64,
+            "end_line": 65
+          },
+          "body_span": {
+            "start_byte": 1776,
+            "end_byte": 3157,
+            "start_line": 65,
+            "end_line": 108
+          },
+          "header": "String valueToString(double value, bool useSpecialFloats,\n                     unsigned int precision, PrecisionType precisionType) ",
+          "text": "String valueToString(double value, bool useSpecialFloats,\n                     unsigned int precision, PrecisionType precisionType) {\n  // Print into the buffer. We need not request the alternative representation\n  // that always has a decimal point because JSON doesn't distinguish the\n  // concepts of reals and integers.\n  if (!std::isfinite(value)) {\n    if (std::isnan(value))\n      return useSpecialFloats ? \"NaN\" : \"null\";\n    if (value < 0)\n      return useSpecialFloats ? \"-Infinity\" : \"-1e+9999\";\n    return useSpecialFloats ? \"Infinity\" : \"1e+9999\";\n  }\n\n  String buffer(size_t(36), '\\0');\n  while (true) {\n    int len = jsoncpp_snprintf(\n        &*buffer.begin(), buffer.size(),\n        (precisionType == PrecisionType::significantDigits) ? \"%.*g\" : \"%.*f\",\n        precision, value);\n    assert(len >= 0);\n    auto wouldPrint = static_cast<size_t>(len);\n    if (wouldPrint >= buffer.size()) {\n      buffer.resize(wouldPrint + 1);\n      continue;\n    }\n    buffer.resize(wouldPrint);\n    break;\n  }\n\n  buffer.erase(fixNumericLocale(buffer.begin(), buffer.end()), buffer.end());\n\n  // try to ensure we preserve the fact that this was given to us as a double on\n  // input\n  if (buffer.find('.') == buffer.npos && buffer.find('e') == buffer.npos) {\n    buffer += \".0\";\n  }\n\n  // strip the zero padding from the right\n  if (precisionType == PrecisionType::decimalPlaces) {\n    buffer.erase(fixZerosInTheEnd(buffer.begin(), buffer.end(), precision),\n                 buffer.end());\n  }\n\n  return buffer;\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "valueToString",
+          "span": {
+            "start_byte": 3173,
+            "end_byte": 3350,
+            "start_line": 110,
+            "end_line": 114
+          },
+          "header_span": {
+            "start_byte": 3173,
+            "end_byte": 3283,
+            "start_line": 110,
+            "end_line": 112
+          },
+          "body_span": {
+            "start_byte": 3283,
+            "end_byte": 3350,
+            "start_line": 112,
+            "end_line": 114
+          },
+          "header": "\nString valueToString(double value, unsigned int precision,\n                     PrecisionType precisionType) ",
+          "text": "\nString valueToString(double value, unsigned int precision,\n                     PrecisionType precisionType) {\n  return valueToString(value, false, precision, precisionType);\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "valueToString",
+          "span": {
+            "start_byte": 3351,
+            "end_byte": 3421,
+            "start_line": 115,
+            "end_line": 116
+          },
+          "header_span": {
+            "start_byte": 3351,
+            "end_byte": 3385,
+            "start_line": 115,
+            "end_line": 116
+          },
+          "body_span": {
+            "start_byte": 3385,
+            "end_byte": 3421,
+            "start_line": 116,
+            "end_line": 116
+          },
+          "header": "\nString valueToString(bool value) ",
+          "text": "\nString valueToString(bool value) { return value ? \"true\" : \"false\"; }",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "doesAnyCharRequireEscaping",
+          "span": {
+            "start_byte": 3422,
+            "end_byte": 3627,
+            "start_line": 117,
+            "end_line": 124
+          },
+          "header_span": {
+            "start_byte": 3422,
+            "end_byte": 3487,
+            "start_line": 117,
+            "end_line": 118
+          },
+          "body_span": {
+            "start_byte": 3487,
+            "end_byte": 3627,
+            "start_line": 118,
+            "end_line": 124
+          },
+          "header": "\nstatic bool doesAnyCharRequireEscaping(char const* s, size_t n) ",
+          "text": "\nstatic bool doesAnyCharRequireEscaping(char const* s, size_t n) {\n  assert(s || !n);\n\n  return std::any_of(s, s + n, [](unsigned char c) {\n    return c == '\\\\' || c == '\"' || c < 0x20 || c > 0x7F;\n  });\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "std::any_of",
+          "span": {
+            "start_byte": 3508,
+            "end_byte": 3623,
+            "start_line": 120,
+            "end_line": 123
+          },
+          "header_span": {
+            "start_byte": 3508,
+            "end_byte": 3560,
+            "start_line": 120,
+            "end_line": 121
+          },
+          "body_span": {
+            "start_byte": 3560,
+            "end_byte": 3623,
+            "start_line": 121,
+            "end_line": 123
+          },
+          "header": "\n  return std::any_of(s, s + n, [](unsigned char c) ",
+          "text": "\n  return std::any_of(s, s + n, [](unsigned char c) {\n    return c == '\\\\' || c == '\"' || c < 0x20 || c > 0x7F;\n  }",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "utf8ToCodepoint",
+          "span": {
+            "start_byte": 3628,
+            "end_byte": 5322,
+            "start_line": 125,
+            "end_line": 175
+          },
+          "header_span": {
+            "start_byte": 3628,
+            "end_byte": 3696,
+            "start_line": 125,
+            "end_line": 126
+          },
+          "body_span": {
+            "start_byte": 3696,
+            "end_byte": 5322,
+            "start_line": 126,
+            "end_line": 175
+          },
+          "header": "\nstatic unsigned int utf8ToCodepoint(const char*& s, const char* e) ",
+          "text": "\nstatic unsigned int utf8ToCodepoint(const char*& s, const char* e) {\n  const unsigned int REPLACEMENT_CHARACTER = 0xFFFD;\n\n  unsigned int firstByte = static_cast<unsigned char>(*s);\n\n  if (firstByte < 0x80)\n    return firstByte;\n\n  if (firstByte < 0xE0) {\n    if (e - s < 2)\n      return REPLACEMENT_CHARACTER;\n\n    unsigned int calculated =\n        ((firstByte & 0x1F) << 6) | (static_cast<unsigned int>(s[1]) & 0x3F);\n    s += 1;\n    // oversized encoded characters are invalid\n    return calculated < 0x80 ? REPLACEMENT_CHARACTER : calculated;\n  }\n\n  if (firstByte < 0xF0) {\n    if (e - s < 3)\n      return REPLACEMENT_CHARACTER;\n\n    unsigned int calculated = ((firstByte & 0x0F) << 12) |\n                              ((static_cast<unsigned int>(s[1]) & 0x3F) << 6) |\n                              (static_cast<unsigned int>(s[2]) & 0x3F);\n    s += 2;\n    // surrogates aren't valid codepoints itself\n    // shouldn't be UTF-8 encoded\n    if (calculated >= 0xD800 && calculated <= 0xDFFF)\n      return REPLACEMENT_CHARACTER;\n    // oversized encoded characters are invalid\n    return calculated < 0x800 ? REPLACEMENT_CHARACTER : calculated;\n  }\n\n  if (firstByte < 0xF8) {\n    if (e - s < 4)\n      return REPLACEMENT_CHARACTER;\n\n    unsigned int calculated = ((firstByte & 0x07) << 18) |\n                              ((static_cast<unsigned int>(s[1]) & 0x3F) << 12) |\n                              ((static_cast<unsigned int>(s[2]) & 0x3F) << 6) |\n                              (static_cast<unsigned int>(s[3]) & 0x3F);\n    s += 3;\n    // oversized encoded characters are invalid\n    return calculated < 0x10000 ? REPLACEMENT_CHARACTER : calculated;\n  }\n\n  return REPLACEMENT_CHARACTER;\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "toHex16Bit",
+          "span": {
+            "start_byte": 6317,
+            "end_byte": 6603,
+            "start_line": 193,
+            "end_line": 203
+          },
+          "header_span": {
+            "start_byte": 6317,
+            "end_byte": 6359,
+            "start_line": 193,
+            "end_line": 194
+          },
+          "body_span": {
+            "start_byte": 6359,
+            "end_byte": 6603,
+            "start_line": 194,
+            "end_line": 203
+          },
+          "header": "\nstatic String toHex16Bit(unsigned int x) ",
+          "text": "\nstatic String toHex16Bit(unsigned int x) {\n  const unsigned int hi = (x >> 8) & 0xff;\n  const unsigned int lo = x & 0xff;\n  String result(4, ' ');\n  result[0] = hex2[2 * hi];\n  result[1] = hex2[2 * hi + 1];\n  result[2] = hex2[2 * lo];\n  result[3] = hex2[2 * lo + 1];\n  return result;\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "appendRaw",
+          "span": {
+            "start_byte": 6604,
+            "end_byte": 6694,
+            "start_line": 204,
+            "end_line": 207
+          },
+          "header_span": {
+            "start_byte": 6604,
+            "end_byte": 6656,
+            "start_line": 204,
+            "end_line": 205
+          },
+          "body_span": {
+            "start_byte": 6656,
+            "end_byte": 6694,
+            "start_line": 205,
+            "end_line": 207
+          },
+          "header": "\nstatic void appendRaw(String& result, unsigned ch) ",
+          "text": "\nstatic void appendRaw(String& result, unsigned ch) {\n  result += static_cast<char>(ch);\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "appendHex",
+          "span": {
+            "start_byte": 6695,
+            "end_byte": 6797,
+            "start_line": 208,
+            "end_line": 211
+          },
+          "header_span": {
+            "start_byte": 6695,
+            "end_byte": 6747,
+            "start_line": 208,
+            "end_line": 209
+          },
+          "body_span": {
+            "start_byte": 6747,
+            "end_byte": 6797,
+            "start_line": 209,
+            "end_line": 211
+          },
+          "header": "\nstatic void appendHex(String& result, unsigned ch) ",
+          "text": "\nstatic void appendHex(String& result, unsigned ch) {\n  result.append(\"\\\\u\").append(toHex16Bit(ch));\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "valueToQuotedStringN",
+          "span": {
+            "start_byte": 6798,
+            "end_byte": 9197,
+            "start_line": 212,
+            "end_line": 288
+          },
+          "header_span": {
+            "start_byte": 6798,
+            "end_byte": 6926,
+            "start_line": 212,
+            "end_line": 214
+          },
+          "body_span": {
+            "start_byte": 6926,
+            "end_byte": 9197,
+            "start_line": 214,
+            "end_line": 288
+          },
+          "header": "\nstatic String valueToQuotedStringN(const char* value, size_t length,\n                                   bool emitUTF8 = false) ",
+          "text": "\nstatic String valueToQuotedStringN(const char* value, size_t length,\n                                   bool emitUTF8 = false) {\n  if (value == nullptr)\n    return \"\";\n\n  if (!doesAnyCharRequireEscaping(value, length))\n    return String(\"\\\"\") + value + \"\\\"\";\n  // We have to walk value and escape any special characters.\n  // Appending to String is not efficient, but this should be rare.\n  // (Note: forward slashes are *not* rare, but I am not escaping them.)\n  String::size_type maxsize = length * 2 + 3; // allescaped+quotes+NULL\n  String result;\n  result.reserve(maxsize); // to avoid lots of mallocs\n  result += \"\\\"\";\n  char const* end = value + length;\n  for (const char* c = value; c != end; ++c) {\n    switch (*c) {\n    case '\\\"':\n      result += \"\\\\\\\"\";\n      break;\n    case '\\\\':\n      result += \"\\\\\\\\\";\n      break;\n    case '\\b':\n      result += \"\\\\b\";\n      break;\n    case '\\f':\n      result += \"\\\\f\";\n      break;\n    case '\\n':\n      result += \"\\\\n\";\n      break;\n    case '\\r':\n      result += \"\\\\r\";\n      break;\n    case '\\t':\n      result += \"\\\\t\";\n      break;\n    // case '/':\n    // Even though \\/ is considered a legal escape in JSON, a bare\n    // slash is also legal, so I see no reason to escape it.\n    // (I hope I am not misunderstanding something.)\n    // blep notes: actually escaping \\/ may be useful in javascript to avoid </\n    // sequence.\n    // Should add a flag to allow this compatibility mode and prevent this\n    // sequence from occurring.\n    default: {\n      if (emitUTF8) {\n        unsigned codepoint = static_cast<unsigned char>(*c);\n        if (codepoint < 0x20) {\n          appendHex(result, codepoint);\n        } else {\n          appendRaw(result, codepoint);\n        }\n      } else {\n        unsigned codepoint = utf8ToCodepoint(c, end); // modifies `c`\n        if (codepoint < 0x20) {\n          appendHex(result, codepoint);\n        } else if (codepoint < 0x80) {\n          appendRaw(result, codepoint);\n        } else if (codepoint < 0x10000) {\n          // Basic Multilingual Plane\n          appendHex(result, codepoint);\n        } else {\n          // Extended Unicode. Encode 20 bits as a surrogate pair.\n          codepoint -= 0x10000;\n          appendHex(result, 0xd800 + ((codepoint >> 10) & 0x3ff));\n          appendHex(result, 0xdc00 + (codepoint & 0x3ff));\n        }\n      }\n    } break;\n    }\n  }\n  result += \"\\\"\";\n  return result;\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "valueToQuotedString",
+          "span": {
+            "start_byte": 9198,
+            "end_byte": 9301,
+            "start_line": 289,
+            "end_line": 292
+          },
+          "header_span": {
+            "start_byte": 9198,
+            "end_byte": 9245,
+            "start_line": 289,
+            "end_line": 290
+          },
+          "body_span": {
+            "start_byte": 9245,
+            "end_byte": 9301,
+            "start_line": 290,
+            "end_line": 292
+          },
+          "header": "\nString valueToQuotedString(const char* value) ",
+          "text": "\nString valueToQuotedString(const char* value) {\n  return valueToQuotedStringN(value, strlen(value));\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "valueToQuotedString",
+          "span": {
+            "start_byte": 9302,
+            "end_byte": 9413,
+            "start_line": 293,
+            "end_line": 296
+          },
+          "header_span": {
+            "start_byte": 9302,
+            "end_byte": 9364,
+            "start_line": 293,
+            "end_line": 294
+          },
+          "body_span": {
+            "start_byte": 9364,
+            "end_byte": 9413,
+            "start_line": 294,
+            "end_line": 296
+          },
+          "header": "\nString valueToQuotedString(const char* value, size_t length) ",
+          "text": "\nString valueToQuotedString(const char* value, size_t length) {\n  return valueToQuotedStringN(value, length);\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "FastWriter::enableYAMLCompatibility",
+          "span": {
+            "start_byte": 9663,
+            "end_byte": 9744,
+            "start_line": 308,
+            "end_line": 309
+          },
+          "header_span": {
+            "start_byte": 9663,
+            "end_byte": 9707,
+            "start_line": 308,
+            "end_line": 309
+          },
+          "body_span": {
+            "start_byte": 9707,
+            "end_byte": 9744,
+            "start_line": 309,
+            "end_line": 309
+          },
+          "header": "\nvoid FastWriter::enableYAMLCompatibility() ",
+          "text": "\nvoid FastWriter::enableYAMLCompatibility() { yamlCompatibilityEnabled_ = true; }",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "FastWriter::dropNullPlaceholders",
+          "span": {
+            "start_byte": 9745,
+            "end_byte": 9819,
+            "start_line": 310,
+            "end_line": 311
+          },
+          "header_span": {
+            "start_byte": 9745,
+            "end_byte": 9786,
+            "start_line": 310,
+            "end_line": 311
+          },
+          "body_span": {
+            "start_byte": 9786,
+            "end_byte": 9819,
+            "start_line": 311,
+            "end_line": 311
+          },
+          "header": "\nvoid FastWriter::dropNullPlaceholders() ",
+          "text": "\nvoid FastWriter::dropNullPlaceholders() { dropNullPlaceholders_ = true; }",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "FastWriter::omitEndingLineFeed",
+          "span": {
+            "start_byte": 9820,
+            "end_byte": 9890,
+            "start_line": 312,
+            "end_line": 313
+          },
+          "header_span": {
+            "start_byte": 9820,
+            "end_byte": 9859,
+            "start_line": 312,
+            "end_line": 313
+          },
+          "body_span": {
+            "start_byte": 9859,
+            "end_byte": 9890,
+            "start_line": 313,
+            "end_line": 313
+          },
+          "header": "\nvoid FastWriter::omitEndingLineFeed() ",
+          "text": "\nvoid FastWriter::omitEndingLineFeed() { omitEndingLineFeed_ = true; }",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "FastWriter::write",
+          "span": {
+            "start_byte": 9891,
+            "end_byte": 10051,
+            "start_line": 314,
+            "end_line": 321
+          },
+          "header_span": {
+            "start_byte": 9891,
+            "end_byte": 9936,
+            "start_line": 314,
+            "end_line": 315
+          },
+          "body_span": {
+            "start_byte": 9936,
+            "end_byte": 10051,
+            "start_line": 315,
+            "end_line": 321
+          },
+          "header": "\nString FastWriter::write(const Value& root) ",
+          "text": "\nString FastWriter::write(const Value& root) {\n  document_.clear();\n  writeValue(root);\n  if (!omitEndingLineFeed_)\n    document_ += '\\n';\n  return document_;\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "FastWriter::writeValue",
+          "span": {
+            "start_byte": 10052,
+            "end_byte": 11509,
+            "start_line": 322,
+            "end_line": 374
+          },
+          "header_span": {
+            "start_byte": 10052,
+            "end_byte": 10101,
+            "start_line": 322,
+            "end_line": 323
+          },
+          "body_span": {
+            "start_byte": 10101,
+            "end_byte": 11509,
+            "start_line": 323,
+            "end_line": 374
+          },
+          "header": "\nvoid FastWriter::writeValue(const Value& value) ",
+          "text": "\nvoid FastWriter::writeValue(const Value& value) {\n  switch (value.type()) {\n  case nullValue:\n    if (!dropNullPlaceholders_)\n      document_ += \"null\";\n    break;\n  case intValue:\n    document_ += valueToString(value.asLargestInt());\n    break;\n  case uintValue:\n    document_ += valueToString(value.asLargestUInt());\n    break;\n  case realValue:\n    document_ += valueToString(value.asDouble());\n    break;\n  case stringValue: {\n    // Is NULL possible for value.string_? No.\n    char const* str;\n    char const* end;\n    bool ok = value.getString(&str, &end);\n    if (ok)\n      document_ += valueToQuotedStringN(str, static_cast<size_t>(end - str));\n    break;\n  }\n  case booleanValue:\n    document_ += valueToString(value.asBool());\n    break;\n  case arrayValue: {\n    document_ += '[';\n    ArrayIndex size = value.size();\n    for (ArrayIndex index = 0; index < size; ++index) {\n      if (index > 0)\n        document_ += ',';\n      writeValue(value[index]);\n    }\n    document_ += ']';\n  } break;\n  case objectValue: {\n    Value::Members members(value.getMemberNames());\n    document_ += '{';\n    for (auto it = members.begin(); it != members.end(); ++it) {\n      const String& name = *it;\n      if (it != members.begin())\n        document_ += ',';\n      document_ += valueToQuotedStringN(name.data(), name.length());\n      document_ += yamlCompatibilityEnabled_ ? \": \" : \":\";\n      writeValue(value[name]);\n    }\n    document_ += '}';\n  } break;\n  }\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "StyledWriter::write",
+          "span": {
+            "start_byte": 11644,
+            "end_byte": 11903,
+            "start_line": 380,
+            "end_line": 390
+          },
+          "header_span": {
+            "start_byte": 11644,
+            "end_byte": 11691,
+            "start_line": 380,
+            "end_line": 381
+          },
+          "body_span": {
+            "start_byte": 11691,
+            "end_byte": 11903,
+            "start_line": 381,
+            "end_line": 390
+          },
+          "header": "\nString StyledWriter::write(const Value& root) ",
+          "text": "\nString StyledWriter::write(const Value& root) {\n  document_.clear();\n  addChildValues_ = false;\n  indentString_.clear();\n  writeCommentBeforeValue(root);\n  writeValue(root);\n  writeCommentAfterValueOnSameLine(root);\n  document_ += '\\n';\n  return document_;\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "StyledWriter::writeValue",
+          "span": {
+            "start_byte": 11904,
+            "end_byte": 13459,
+            "start_line": 391,
+            "end_line": 450
+          },
+          "header_span": {
+            "start_byte": 11904,
+            "end_byte": 11955,
+            "start_line": 391,
+            "end_line": 392
+          },
+          "body_span": {
+            "start_byte": 11955,
+            "end_byte": 13459,
+            "start_line": 392,
+            "end_line": 450
+          },
+          "header": "\nvoid StyledWriter::writeValue(const Value& value) ",
+          "text": "\nvoid StyledWriter::writeValue(const Value& value) {\n  switch (value.type()) {\n  case nullValue:\n    pushValue(\"null\");\n    break;\n  case intValue:\n    pushValue(valueToString(value.asLargestInt()));\n    break;\n  case uintValue:\n    pushValue(valueToString(value.asLargestUInt()));\n    break;\n  case realValue:\n    pushValue(valueToString(value.asDouble()));\n    break;\n  case stringValue: {\n    // Is NULL possible for value.string_? No.\n    char const* str;\n    char const* end;\n    bool ok = value.getString(&str, &end);\n    if (ok)\n      pushValue(valueToQuotedStringN(str, static_cast<size_t>(end - str)));\n    else\n      pushValue(\"\");\n    break;\n  }\n  case booleanValue:\n    pushValue(valueToString(value.asBool()));\n    break;\n  case arrayValue:\n    writeArrayValue(value);\n    break;\n  case objectValue: {\n    Value::Members members(value.getMemberNames());\n    if (members.empty())\n      pushValue(\"{}\");\n    else {\n      writeWithIndent(\"{\");\n      indent();\n      auto it = members.begin();\n      for (;;) {\n        const String& name = *it;\n        const Value& childValue = value[name];\n        writeCommentBeforeValue(childValue);\n        writeWithIndent(valueToQuotedString(name.c_str(), name.size()));\n        document_ += \" : \";\n        writeValue(childValue);\n        if (++it == members.end()) {\n          writeCommentAfterValueOnSameLine(childValue);\n          break;\n        }\n        document_ += ',';\n        writeCommentAfterValueOnSameLine(childValue);\n      }\n      unindent();\n      writeWithIndent(\"}\");\n    }\n  } break;\n  }\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "StyledWriter::writeArrayValue",
+          "span": {
+            "start_byte": 13460,
+            "end_byte": 14619,
+            "start_line": 451,
+            "end_line": 493
+          },
+          "header_span": {
+            "start_byte": 13460,
+            "end_byte": 13516,
+            "start_line": 451,
+            "end_line": 452
+          },
+          "body_span": {
+            "start_byte": 13516,
+            "end_byte": 14619,
+            "start_line": 452,
+            "end_line": 493
+          },
+          "header": "\nvoid StyledWriter::writeArrayValue(const Value& value) ",
+          "text": "\nvoid StyledWriter::writeArrayValue(const Value& value) {\n  size_t size = value.size();\n  if (size == 0)\n    pushValue(\"[]\");\n  else {\n    bool isArrayMultiLine = isMultilineArray(value);\n    if (isArrayMultiLine) {\n      writeWithIndent(\"[\");\n      indent();\n      bool hasChildValue = !childValues_.empty();\n      ArrayIndex index = 0;\n      for (;;) {\n        const Value& childValue = value[index];\n        writeCommentBeforeValue(childValue);\n        if (hasChildValue)\n          writeWithIndent(childValues_[index]);\n        else {\n          writeIndent();\n          writeValue(childValue);\n        }\n        if (++index == size) {\n          writeCommentAfterValueOnSameLine(childValue);\n          break;\n        }\n        document_ += ',';\n        writeCommentAfterValueOnSameLine(childValue);\n      }\n      unindent();\n      writeWithIndent(\"]\");\n    } else // output on a single line\n    {\n      assert(childValues_.size() == size);\n      document_ += \"[ \";\n      for (size_t index = 0; index < size; ++index) {\n        if (index > 0)\n          document_ += \", \";\n        document_ += childValues_[index];\n      }\n      document_ += \" ]\";\n    }\n  }\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "StyledWriter::isMultilineArray",
+          "span": {
+            "start_byte": 14620,
+            "end_byte": 15585,
+            "start_line": 494,
+            "end_line": 520
+          },
+          "header_span": {
+            "start_byte": 14620,
+            "end_byte": 14677,
+            "start_line": 494,
+            "end_line": 495
+          },
+          "body_span": {
+            "start_byte": 14677,
+            "end_byte": 15585,
+            "start_line": 495,
+            "end_line": 520
+          },
+          "header": "\nbool StyledWriter::isMultilineArray(const Value& value) ",
+          "text": "\nbool StyledWriter::isMultilineArray(const Value& value) {\n  ArrayIndex const size = value.size();\n  bool isMultiLine = size * 3 >= rightMargin_;\n  childValues_.clear();\n  for (ArrayIndex index = 0; index < size && !isMultiLine; ++index) {\n    const Value& childValue = value[index];\n    isMultiLine = ((childValue.isArray() || childValue.isObject()) &&\n                   !childValue.empty());\n  }\n  if (!isMultiLine) // check if line length > max line length\n  {\n    childValues_.reserve(size);\n    addChildValues_ = true;\n    ArrayIndex lineLength = 4 + (size - 1) * 2; // '[ ' + ', '*n + ' ]'\n    for (ArrayIndex index = 0; index < size; ++index) {\n      if (hasCommentForValue(value[index])) {\n        isMultiLine = true;\n      }\n      writeValue(value[index]);\n      lineLength += static_cast<ArrayIndex>(childValues_[index].length());\n    }\n    addChildValues_ = false;\n    isMultiLine = isMultiLine || lineLength >= rightMargin_;\n  }\n  return isMultiLine;\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "StyledWriter::pushValue",
+          "span": {
+            "start_byte": 15586,
+            "end_byte": 15729,
+            "start_line": 521,
+            "end_line": 527
+          },
+          "header_span": {
+            "start_byte": 15586,
+            "end_byte": 15637,
+            "start_line": 521,
+            "end_line": 522
+          },
+          "body_span": {
+            "start_byte": 15637,
+            "end_byte": 15729,
+            "start_line": 522,
+            "end_line": 527
+          },
+          "header": "\nvoid StyledWriter::pushValue(const String& value) ",
+          "text": "\nvoid StyledWriter::pushValue(const String& value) {\n  if (addChildValues_)\n    childValues_.push_back(value);\n  else\n    document_ += value;\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "StyledWriter::writeIndent",
+          "span": {
+            "start_byte": 15730,
+            "end_byte": 16011,
+            "start_line": 528,
+            "end_line": 538
+          },
+          "header_span": {
+            "start_byte": 15730,
+            "end_byte": 15764,
+            "start_line": 528,
+            "end_line": 529
+          },
+          "body_span": {
+            "start_byte": 15764,
+            "end_byte": 16011,
+            "start_line": 529,
+            "end_line": 538
+          },
+          "header": "\nvoid StyledWriter::writeIndent() ",
+          "text": "\nvoid StyledWriter::writeIndent() {\n  if (!document_.empty()) {\n    char last = document_[document_.length() - 1];\n    if (last == ' ') // already indented\n      return;\n    if (last != '\\n') // Comments may add new-line\n      document_ += '\\n';\n  }\n  document_ += indentString_;\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "StyledWriter::writeWithIndent",
+          "span": {
+            "start_byte": 16012,
+            "end_byte": 16111,
+            "start_line": 539,
+            "end_line": 543
+          },
+          "header_span": {
+            "start_byte": 16012,
+            "end_byte": 16069,
+            "start_line": 539,
+            "end_line": 540
+          },
+          "body_span": {
+            "start_byte": 16069,
+            "end_byte": 16111,
+            "start_line": 540,
+            "end_line": 543
+          },
+          "header": "\nvoid StyledWriter::writeWithIndent(const String& value) ",
+          "text": "\nvoid StyledWriter::writeWithIndent(const String& value) {\n  writeIndent();\n  document_ += value;\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "StyledWriter::indent",
+          "span": {
+            "start_byte": 16112,
+            "end_byte": 16187,
+            "start_line": 544,
+            "end_line": 545
+          },
+          "header_span": {
+            "start_byte": 16112,
+            "end_byte": 16141,
+            "start_line": 544,
+            "end_line": 545
+          },
+          "body_span": {
+            "start_byte": 16141,
+            "end_byte": 16187,
+            "start_line": 545,
+            "end_line": 545
+          },
+          "header": "\nvoid StyledWriter::indent() ",
+          "text": "\nvoid StyledWriter::indent() { indentString_ += String(indentSize_, ' '); }",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "StyledWriter::unindent",
+          "span": {
+            "start_byte": 16188,
+            "end_byte": 16329,
+            "start_line": 546,
+            "end_line": 550
+          },
+          "header_span": {
+            "start_byte": 16188,
+            "end_byte": 16219,
+            "start_line": 546,
+            "end_line": 547
+          },
+          "body_span": {
+            "start_byte": 16219,
+            "end_byte": 16329,
+            "start_line": 547,
+            "end_line": 550
+          },
+          "header": "\nvoid StyledWriter::unindent() ",
+          "text": "\nvoid StyledWriter::unindent() {\n  assert(indentString_.size() >= indentSize_);\n  indentString_.resize(indentString_.size() - indentSize_);\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "StyledWriter::writeCommentBeforeValue",
+          "span": {
+            "start_byte": 16330,
+            "end_byte": 16853,
+            "start_line": 551,
+            "end_line": 569
+          },
+          "header_span": {
+            "start_byte": 16330,
+            "end_byte": 16393,
+            "start_line": 551,
+            "end_line": 552
+          },
+          "body_span": {
+            "start_byte": 16393,
+            "end_byte": 16853,
+            "start_line": 552,
+            "end_line": 569
+          },
+          "header": "\nvoid StyledWriter::writeCommentBeforeValue(const Value& root) ",
+          "text": "\nvoid StyledWriter::writeCommentBeforeValue(const Value& root) {\n  if (!root.hasComment(commentBefore))\n    return;\n\n  document_ += '\\n';\n  writeIndent();\n  const String& comment = root.getComment(commentBefore);\n  String::const_iterator iter = comment.begin();\n  while (iter != comment.end()) {\n    document_ += *iter;\n    if (*iter == '\\n' && ((iter + 1) != comment.end() && *(iter + 1) == '/'))\n      writeIndent();\n    ++iter;\n  }\n\n  // Comments are stripped of trailing newlines, so add one here\n  document_ += '\\n';\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "StyledWriter::writeCommentAfterValueOnSameLine",
+          "span": {
+            "start_byte": 16854,
+            "end_byte": 17178,
+            "start_line": 570,
+            "end_line": 580
+          },
+          "header_span": {
+            "start_byte": 16854,
+            "end_byte": 16926,
+            "start_line": 570,
+            "end_line": 571
+          },
+          "body_span": {
+            "start_byte": 16926,
+            "end_byte": 17178,
+            "start_line": 571,
+            "end_line": 580
+          },
+          "header": "\nvoid StyledWriter::writeCommentAfterValueOnSameLine(const Value& root) ",
+          "text": "\nvoid StyledWriter::writeCommentAfterValueOnSameLine(const Value& root) {\n  if (root.hasComment(commentAfterOnSameLine))\n    document_ += \" \" + root.getComment(commentAfterOnSameLine);\n\n  if (root.hasComment(commentAfter)) {\n    document_ += '\\n';\n    document_ += root.getComment(commentAfter);\n    document_ += '\\n';\n  }\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "StyledWriter::hasCommentForValue",
+          "span": {
+            "start_byte": 17179,
+            "end_byte": 17379,
+            "start_line": 581,
+            "end_line": 586
+          },
+          "header_span": {
+            "start_byte": 17179,
+            "end_byte": 17238,
+            "start_line": 581,
+            "end_line": 582
+          },
+          "body_span": {
+            "start_byte": 17238,
+            "end_byte": 17379,
+            "start_line": 582,
+            "end_line": 586
+          },
+          "header": "\nbool StyledWriter::hasCommentForValue(const Value& value) ",
+          "text": "\nbool StyledWriter::hasCommentForValue(const Value& value) {\n  return value.hasComment(commentBefore) ||\n         value.hasComment(commentAfterOnSameLine) ||\n         value.hasComment(commentAfter);\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "StyledStreamWriter::write",
+          "span": {
+            "start_byte": 17648,
+            "end_byte": 18039,
+            "start_line": 594,
+            "end_line": 608
+          },
+          "header_span": {
+            "start_byte": 17648,
+            "end_byte": 17713,
+            "start_line": 594,
+            "end_line": 595
+          },
+          "body_span": {
+            "start_byte": 17713,
+            "end_byte": 18039,
+            "start_line": 595,
+            "end_line": 608
+          },
+          "header": "\nvoid StyledStreamWriter::write(OStream& out, const Value& root) ",
+          "text": "\nvoid StyledStreamWriter::write(OStream& out, const Value& root) {\n  document_ = &out;\n  addChildValues_ = false;\n  indentString_.clear();\n  indented_ = true;\n  writeCommentBeforeValue(root);\n  if (!indented_)\n    writeIndent();\n  indented_ = true;\n  writeValue(root);\n  writeCommentAfterValueOnSameLine(root);\n  *document_ << \"\\n\";\n  document_ = nullptr; // Forget the stream, for safety.\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "StyledStreamWriter::writeValue",
+          "span": {
+            "start_byte": 18040,
+            "end_byte": 19603,
+            "start_line": 609,
+            "end_line": 668
+          },
+          "header_span": {
+            "start_byte": 18040,
+            "end_byte": 18097,
+            "start_line": 609,
+            "end_line": 610
+          },
+          "body_span": {
+            "start_byte": 18097,
+            "end_byte": 19603,
+            "start_line": 610,
+            "end_line": 668
+          },
+          "header": "\nvoid StyledStreamWriter::writeValue(const Value& value) ",
+          "text": "\nvoid StyledStreamWriter::writeValue(const Value& value) {\n  switch (value.type()) {\n  case nullValue:\n    pushValue(\"null\");\n    break;\n  case intValue:\n    pushValue(valueToString(value.asLargestInt()));\n    break;\n  case uintValue:\n    pushValue(valueToString(value.asLargestUInt()));\n    break;\n  case realValue:\n    pushValue(valueToString(value.asDouble()));\n    break;\n  case stringValue: {\n    // Is NULL possible for value.string_? No.\n    char const* str;\n    char const* end;\n    bool ok = value.getString(&str, &end);\n    if (ok)\n      pushValue(valueToQuotedStringN(str, static_cast<size_t>(end - str)));\n    else\n      pushValue(\"\");\n    break;\n  }\n  case booleanValue:\n    pushValue(valueToString(value.asBool()));\n    break;\n  case arrayValue:\n    writeArrayValue(value);\n    break;\n  case objectValue: {\n    Value::Members members(value.getMemberNames());\n    if (members.empty())\n      pushValue(\"{}\");\n    else {\n      writeWithIndent(\"{\");\n      indent();\n      auto it = members.begin();\n      for (;;) {\n        const String& name = *it;\n        const Value& childValue = value[name];\n        writeCommentBeforeValue(childValue);\n        writeWithIndent(valueToQuotedString(name.c_str(), name.size()));\n        *document_ << \" : \";\n        writeValue(childValue);\n        if (++it == members.end()) {\n          writeCommentAfterValueOnSameLine(childValue);\n          break;\n        }\n        *document_ << \",\";\n        writeCommentAfterValueOnSameLine(childValue);\n      }\n      unindent();\n      writeWithIndent(\"}\");\n    }\n  } break;\n  }\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "StyledStreamWriter::writeArrayValue",
+          "span": {
+            "start_byte": 19604,
+            "end_byte": 20861,
+            "start_line": 669,
+            "end_line": 714
+          },
+          "header_span": {
+            "start_byte": 19604,
+            "end_byte": 19666,
+            "start_line": 669,
+            "end_line": 670
+          },
+          "body_span": {
+            "start_byte": 19666,
+            "end_byte": 20861,
+            "start_line": 670,
+            "end_line": 714
+          },
+          "header": "\nvoid StyledStreamWriter::writeArrayValue(const Value& value) ",
+          "text": "\nvoid StyledStreamWriter::writeArrayValue(const Value& value) {\n  unsigned size = value.size();\n  if (size == 0)\n    pushValue(\"[]\");\n  else {\n    bool isArrayMultiLine = isMultilineArray(value);\n    if (isArrayMultiLine) {\n      writeWithIndent(\"[\");\n      indent();\n      bool hasChildValue = !childValues_.empty();\n      unsigned index = 0;\n      for (;;) {\n        const Value& childValue = value[index];\n        writeCommentBeforeValue(childValue);\n        if (hasChildValue)\n          writeWithIndent(childValues_[index]);\n        else {\n          if (!indented_)\n            writeIndent();\n          indented_ = true;\n          writeValue(childValue);\n          indented_ = false;\n        }\n        if (++index == size) {\n          writeCommentAfterValueOnSameLine(childValue);\n          break;\n        }\n        *document_ << \",\";\n        writeCommentAfterValueOnSameLine(childValue);\n      }\n      unindent();\n      writeWithIndent(\"]\");\n    } else // output on a single line\n    {\n      assert(childValues_.size() == size);\n      *document_ << \"[ \";\n      for (unsigned index = 0; index < size; ++index) {\n        if (index > 0)\n          *document_ << \", \";\n        *document_ << childValues_[index];\n      }\n      *document_ << \" ]\";\n    }\n  }\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "StyledStreamWriter::isMultilineArray",
+          "span": {
+            "start_byte": 20862,
+            "end_byte": 21833,
+            "start_line": 715,
+            "end_line": 741
+          },
+          "header_span": {
+            "start_byte": 20862,
+            "end_byte": 20925,
+            "start_line": 715,
+            "end_line": 716
+          },
+          "body_span": {
+            "start_byte": 20925,
+            "end_byte": 21833,
+            "start_line": 716,
+            "end_line": 741
+          },
+          "header": "\nbool StyledStreamWriter::isMultilineArray(const Value& value) ",
+          "text": "\nbool StyledStreamWriter::isMultilineArray(const Value& value) {\n  ArrayIndex const size = value.size();\n  bool isMultiLine = size * 3 >= rightMargin_;\n  childValues_.clear();\n  for (ArrayIndex index = 0; index < size && !isMultiLine; ++index) {\n    const Value& childValue = value[index];\n    isMultiLine = ((childValue.isArray() || childValue.isObject()) &&\n                   !childValue.empty());\n  }\n  if (!isMultiLine) // check if line length > max line length\n  {\n    childValues_.reserve(size);\n    addChildValues_ = true;\n    ArrayIndex lineLength = 4 + (size - 1) * 2; // '[ ' + ', '*n + ' ]'\n    for (ArrayIndex index = 0; index < size; ++index) {\n      if (hasCommentForValue(value[index])) {\n        isMultiLine = true;\n      }\n      writeValue(value[index]);\n      lineLength += static_cast<ArrayIndex>(childValues_[index].length());\n    }\n    addChildValues_ = false;\n    isMultiLine = isMultiLine || lineLength >= rightMargin_;\n  }\n  return isMultiLine;\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "StyledStreamWriter::pushValue",
+          "span": {
+            "start_byte": 21834,
+            "end_byte": 21984,
+            "start_line": 742,
+            "end_line": 748
+          },
+          "header_span": {
+            "start_byte": 21834,
+            "end_byte": 21891,
+            "start_line": 742,
+            "end_line": 743
+          },
+          "body_span": {
+            "start_byte": 21891,
+            "end_byte": 21984,
+            "start_line": 743,
+            "end_line": 748
+          },
+          "header": "\nvoid StyledStreamWriter::pushValue(const String& value) ",
+          "text": "\nvoid StyledStreamWriter::pushValue(const String& value) {\n  if (addChildValues_)\n    childValues_.push_back(value);\n  else\n    *document_ << value;\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "StyledStreamWriter::writeIndent",
+          "span": {
+            "start_byte": 21985,
+            "end_byte": 22287,
+            "start_line": 749,
+            "end_line": 756
+          },
+          "header_span": {
+            "start_byte": 21985,
+            "end_byte": 22025,
+            "start_line": 749,
+            "end_line": 750
+          },
+          "body_span": {
+            "start_byte": 22025,
+            "end_byte": 22287,
+            "start_line": 750,
+            "end_line": 756
+          },
+          "header": "\nvoid StyledStreamWriter::writeIndent() ",
+          "text": "\nvoid StyledStreamWriter::writeIndent() {\n  // blep intended this to look at the so-far-written string\n  // to determine whether we are already indented, but\n  // with a stream we cannot do that. So we rely on some saved state.\n  // The caller checks indented_.\n  *document_ << '\\n' << indentString_;\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "StyledStreamWriter::writeWithIndent",
+          "span": {
+            "start_byte": 22288,
+            "end_byte": 22435,
+            "start_line": 757,
+            "end_line": 763
+          },
+          "header_span": {
+            "start_byte": 22288,
+            "end_byte": 22351,
+            "start_line": 757,
+            "end_line": 758
+          },
+          "body_span": {
+            "start_byte": 22351,
+            "end_byte": 22435,
+            "start_line": 758,
+            "end_line": 763
+          },
+          "header": "\nvoid StyledStreamWriter::writeWithIndent(const String& value) ",
+          "text": "\nvoid StyledStreamWriter::writeWithIndent(const String& value) {\n  if (!indented_)\n    writeIndent();\n  *document_ << value;\n  indented_ = false;\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "StyledStreamWriter::indent",
+          "span": {
+            "start_byte": 22436,
+            "end_byte": 22505,
+            "start_line": 764,
+            "end_line": 765
+          },
+          "header_span": {
+            "start_byte": 22436,
+            "end_byte": 22471,
+            "start_line": 764,
+            "end_line": 765
+          },
+          "body_span": {
+            "start_byte": 22471,
+            "end_byte": 22505,
+            "start_line": 765,
+            "end_line": 765
+          },
+          "header": "\nvoid StyledStreamWriter::indent() ",
+          "text": "\nvoid StyledStreamWriter::indent() { indentString_ += indentation_; }",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "StyledStreamWriter::unindent",
+          "span": {
+            "start_byte": 22506,
+            "end_byte": 22669,
+            "start_line": 766,
+            "end_line": 770
+          },
+          "header_span": {
+            "start_byte": 22506,
+            "end_byte": 22543,
+            "start_line": 766,
+            "end_line": 767
+          },
+          "body_span": {
+            "start_byte": 22543,
+            "end_byte": 22669,
+            "start_line": 767,
+            "end_line": 770
+          },
+          "header": "\nvoid StyledStreamWriter::unindent() ",
+          "text": "\nvoid StyledStreamWriter::unindent() {\n  assert(indentString_.size() >= indentation_.size());\n  indentString_.resize(indentString_.size() - indentation_.size());\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "StyledStreamWriter::writeCommentBeforeValue",
+          "span": {
+            "start_byte": 22670,
+            "end_byte": 23197,
+            "start_line": 771,
+            "end_line": 788
+          },
+          "header_span": {
+            "start_byte": 22670,
+            "end_byte": 22739,
+            "start_line": 771,
+            "end_line": 772
+          },
+          "body_span": {
+            "start_byte": 22739,
+            "end_byte": 23197,
+            "start_line": 772,
+            "end_line": 788
+          },
+          "header": "\nvoid StyledStreamWriter::writeCommentBeforeValue(const Value& root) ",
+          "text": "\nvoid StyledStreamWriter::writeCommentBeforeValue(const Value& root) {\n  if (!root.hasComment(commentBefore))\n    return;\n\n  if (!indented_)\n    writeIndent();\n  const String& comment = root.getComment(commentBefore);\n  String::const_iterator iter = comment.begin();\n  while (iter != comment.end()) {\n    *document_ << *iter;\n    if (*iter == '\\n' && ((iter + 1) != comment.end() && *(iter + 1) == '/'))\n      // writeIndent();  // would include newline\n      *document_ << indentString_;\n    ++iter;\n  }\n  indented_ = false;\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "StyledStreamWriter::writeCommentAfterValueOnSameLine",
+          "span": {
+            "start_byte": 23198,
+            "end_byte": 23525,
+            "start_line": 789,
+            "end_line": 799
+          },
+          "header_span": {
+            "start_byte": 23198,
+            "end_byte": 23276,
+            "start_line": 789,
+            "end_line": 790
+          },
+          "body_span": {
+            "start_byte": 23276,
+            "end_byte": 23525,
+            "start_line": 790,
+            "end_line": 799
+          },
+          "header": "\nvoid StyledStreamWriter::writeCommentAfterValueOnSameLine(const Value& root) ",
+          "text": "\nvoid StyledStreamWriter::writeCommentAfterValueOnSameLine(const Value& root) {\n  if (root.hasComment(commentAfterOnSameLine))\n    *document_ << ' ' << root.getComment(commentAfterOnSameLine);\n\n  if (root.hasComment(commentAfter)) {\n    writeIndent();\n    *document_ << root.getComment(commentAfter);\n  }\n  indented_ = false;\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "StyledStreamWriter::hasCommentForValue",
+          "span": {
+            "start_byte": 23526,
+            "end_byte": 23732,
+            "start_line": 800,
+            "end_line": 805
+          },
+          "header_span": {
+            "start_byte": 23526,
+            "end_byte": 23591,
+            "start_line": 800,
+            "end_line": 801
+          },
+          "body_span": {
+            "start_byte": 23591,
+            "end_byte": 23732,
+            "start_line": 801,
+            "end_line": 805
+          },
+          "header": "\nbool StyledStreamWriter::hasCommentForValue(const Value& value) ",
+          "text": "\nbool StyledStreamWriter::hasCommentForValue(const Value& value) {\n  return value.hasComment(commentBefore) ||\n         value.hasComment(commentAfterOnSameLine) ||\n         value.hasComment(commentAfter);\n}",
+          "children": []
+        },
+        {
+          "kind": "struct",
+          "name": "CommentStyle",
+          "span": {
+            "start_byte": 23837,
+            "end_byte": 24067,
+            "start_line": 811,
+            "end_line": 818
+          },
+          "header_span": {
+            "start_byte": 23837,
+            "end_byte": 23857,
+            "start_line": 811,
+            "end_line": 811
+          },
+          "body_span": {
+            "start_byte": 23857,
+            "end_byte": 24067,
+            "start_line": 811,
+            "end_line": 818
+          },
+          "header": "struct CommentStyle ",
+          "text": "struct CommentStyle {\n  /// Decide whether to write comments.\n  enum Enum {\n    None, ///< Drop all comments.\n    Most, ///< Recover odd behavior of previous versions (not implemented yet).\n    All   ///< Keep all comments.\n  };\n}",
+          "children": []
+        },
+        {
+          "kind": "struct",
+          "name": "BuiltStyledStreamWriter",
+          "span": {
+            "start_byte": 24069,
+            "end_byte": 25373,
+            "start_line": 819,
+            "end_line": 857
+          },
+          "header_span": {
+            "start_byte": 24069,
+            "end_byte": 24123,
+            "start_line": 819,
+            "end_line": 820
+          },
+          "body_span": {
+            "start_byte": 24123,
+            "end_byte": 25373,
+            "start_line": 820,
+            "end_line": 857
+          },
+          "header": "\nstruct BuiltStyledStreamWriter : public StreamWriter ",
+          "text": "\nstruct BuiltStyledStreamWriter : public StreamWriter {\n  BuiltStyledStreamWriter(String indentation, CommentStyle::Enum cs,\n                          String colonSymbol, String nullSymbol,\n                          String endingLineFeedSymbol, bool useSpecialFloats,\n                          bool emitUTF8, unsigned int precision,\n                          PrecisionType precisionType);\n  int write(Value const& root, OStream* sout) override;\n\nprivate:\n  void writeValue(Value const& value);\n  void writeArrayValue(Value const& value);\n  bool isMultilineArray(Value const& value);\n  void pushValue(String const& value);\n  void writeIndent();\n  void writeWithIndent(String const& value);\n  void indent();\n  void unindent();\n  void writeCommentBeforeValue(Value const& root);\n  void writeCommentAfterValueOnSameLine(Value const& root);\n  static bool hasCommentForValue(const Value& value);\n\n  using ChildValues = std::vector<String>;\n\n  ChildValues childValues_;\n  String indentString_;\n  unsigned int rightMargin_;\n  String indentation_;\n  CommentStyle::Enum cs_;\n  String colonSymbol_;\n  String nullSymbol_;\n  String endingLineFeedSymbol_;\n  bool addChildValues_ : 1;\n  bool indented_ : 1;\n  bool useSpecialFloats_ : 1;\n  bool emitUTF8_ : 1;\n  unsigned int precision_;\n  PrecisionType precisionType_;\n}",
+          "children": [
+            {
+              "kind": "using",
+              "name": null,
+              "span": {
+                "start_byte": 24959,
+                "end_byte": 25002,
+                "start_line": 840,
+                "end_line": 841
+              },
+              "header_span": null,
+              "body_span": null,
+              "header": null,
+              "text": "\n  using ChildValues = std::vector<String>;",
+              "children": []
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "BuiltStyledStreamWriter::write",
+          "span": {
+            "start_byte": 26026,
+            "end_byte": 26404,
+            "start_line": 868,
+            "end_line": 882
+          },
+          "header_span": {
+            "start_byte": 26026,
+            "end_byte": 26095,
+            "start_line": 868,
+            "end_line": 868
+          },
+          "body_span": {
+            "start_byte": 26095,
+            "end_byte": 26404,
+            "start_line": 868,
+            "end_line": 882
+          },
+          "header": "int BuiltStyledStreamWriter::write(Value const& root, OStream* sout) ",
+          "text": "int BuiltStyledStreamWriter::write(Value const& root, OStream* sout) {\n  sout_ = sout;\n  addChildValues_ = false;\n  indented_ = true;\n  indentString_.clear();\n  writeCommentBeforeValue(root);\n  if (!indented_)\n    writeIndent();\n  indented_ = true;\n  writeValue(root);\n  writeCommentAfterValueOnSameLine(root);\n  *sout_ << endingLineFeedSymbol_;\n  sout_ = nullptr;\n  return 0;\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "BuiltStyledStreamWriter::writeValue",
+          "span": {
+            "start_byte": 26405,
+            "end_byte": 28102,
+            "start_line": 883,
+            "end_line": 944
+          },
+          "header_span": {
+            "start_byte": 26405,
+            "end_byte": 26466,
+            "start_line": 883,
+            "end_line": 883
+          },
+          "body_span": {
+            "start_byte": 26466,
+            "end_byte": 28102,
+            "start_line": 883,
+            "end_line": 944
+          },
+          "header": "void BuiltStyledStreamWriter::writeValue(Value const& value) ",
+          "text": "void BuiltStyledStreamWriter::writeValue(Value const& value) {\n  switch (value.type()) {\n  case nullValue:\n    pushValue(nullSymbol_);\n    break;\n  case intValue:\n    pushValue(valueToString(value.asLargestInt()));\n    break;\n  case uintValue:\n    pushValue(valueToString(value.asLargestUInt()));\n    break;\n  case realValue:\n    pushValue(valueToString(value.asDouble(), useSpecialFloats_, precision_,\n                            precisionType_));\n    break;\n  case stringValue: {\n    // Is NULL is possible for value.string_? No.\n    char const* str;\n    char const* end;\n    bool ok = value.getString(&str, &end);\n    if (ok)\n      pushValue(\n          valueToQuotedStringN(str, static_cast<size_t>(end - str), emitUTF8_));\n    else\n      pushValue(\"\");\n    break;\n  }\n  case booleanValue:\n    pushValue(valueToString(value.asBool()));\n    break;\n  case arrayValue:\n    writeArrayValue(value);\n    break;\n  case objectValue: {\n    Value::Members members(value.getMemberNames());\n    if (members.empty())\n      pushValue(\"{}\");\n    else {\n      writeWithIndent(\"{\");\n      indent();\n      auto it = members.begin();\n      for (;;) {\n        String const& name = *it;\n        Value const& childValue = value[name];\n        writeCommentBeforeValue(childValue);\n        writeWithIndent(\n            valueToQuotedStringN(name.data(), name.length(), emitUTF8_));\n        *sout_ << colonSymbol_;\n        writeValue(childValue);\n        if (++it == members.end()) {\n          writeCommentAfterValueOnSameLine(childValue);\n          break;\n        }\n        *sout_ << \",\";\n        writeCommentAfterValueOnSameLine(childValue);\n      }\n      unindent();\n      writeWithIndent(\"}\");\n    }\n  } break;\n  }\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "BuiltStyledStreamWriter::writeArrayValue",
+          "span": {
+            "start_byte": 28103,
+            "end_byte": 29509,
+            "start_line": 945,
+            "end_line": 994
+          },
+          "header_span": {
+            "start_byte": 28103,
+            "end_byte": 28170,
+            "start_line": 945,
+            "end_line": 946
+          },
+          "body_span": {
+            "start_byte": 28170,
+            "end_byte": 29509,
+            "start_line": 946,
+            "end_line": 994
+          },
+          "header": "\nvoid BuiltStyledStreamWriter::writeArrayValue(Value const& value) ",
+          "text": "\nvoid BuiltStyledStreamWriter::writeArrayValue(Value const& value) {\n  unsigned size = value.size();\n  if (size == 0)\n    pushValue(\"[]\");\n  else {\n    bool isMultiLine = (cs_ == CommentStyle::All) || isMultilineArray(value);\n    if (isMultiLine) {\n      writeWithIndent(\"[\");\n      indent();\n      bool hasChildValue = !childValues_.empty();\n      unsigned index = 0;\n      for (;;) {\n        Value const& childValue = value[index];\n        writeCommentBeforeValue(childValue);\n        if (hasChildValue)\n          writeWithIndent(childValues_[index]);\n        else {\n          if (!indented_)\n            writeIndent();\n          indented_ = true;\n          writeValue(childValue);\n          indented_ = false;\n        }\n        if (++index == size) {\n          writeCommentAfterValueOnSameLine(childValue);\n          break;\n        }\n        *sout_ << \",\";\n        writeCommentAfterValueOnSameLine(childValue);\n      }\n      unindent();\n      writeWithIndent(\"]\");\n    } else // output on a single line\n    {\n      assert(childValues_.size() == size);\n      *sout_ << \"[\";\n      if (!indentation_.empty())\n        *sout_ << \" \";\n      for (unsigned index = 0; index < size; ++index) {\n        if (index > 0)\n          *sout_ << ((!indentation_.empty()) ? \", \" : \",\");\n        *sout_ << childValues_[index];\n      }\n      if (!indentation_.empty())\n        *sout_ << \" \";\n      *sout_ << \"]\";\n    }\n  }\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "BuiltStyledStreamWriter::isMultilineArray",
+          "span": {
+            "start_byte": 29510,
+            "end_byte": 30486,
+            "start_line": 995,
+            "end_line": 1021
+          },
+          "header_span": {
+            "start_byte": 29510,
+            "end_byte": 29578,
+            "start_line": 995,
+            "end_line": 996
+          },
+          "body_span": {
+            "start_byte": 29578,
+            "end_byte": 30486,
+            "start_line": 996,
+            "end_line": 1021
+          },
+          "header": "\nbool BuiltStyledStreamWriter::isMultilineArray(Value const& value) ",
+          "text": "\nbool BuiltStyledStreamWriter::isMultilineArray(Value const& value) {\n  ArrayIndex const size = value.size();\n  bool isMultiLine = size * 3 >= rightMargin_;\n  childValues_.clear();\n  for (ArrayIndex index = 0; index < size && !isMultiLine; ++index) {\n    Value const& childValue = value[index];\n    isMultiLine = ((childValue.isArray() || childValue.isObject()) &&\n                   !childValue.empty());\n  }\n  if (!isMultiLine) // check if line length > max line length\n  {\n    childValues_.reserve(size);\n    addChildValues_ = true;\n    ArrayIndex lineLength = 4 + (size - 1) * 2; // '[ ' + ', '*n + ' ]'\n    for (ArrayIndex index = 0; index < size; ++index) {\n      if (hasCommentForValue(value[index])) {\n        isMultiLine = true;\n      }\n      writeValue(value[index]);\n      lineLength += static_cast<ArrayIndex>(childValues_[index].length());\n    }\n    addChildValues_ = false;\n    isMultiLine = isMultiLine || lineLength >= rightMargin_;\n  }\n  return isMultiLine;\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "BuiltStyledStreamWriter::pushValue",
+          "span": {
+            "start_byte": 30487,
+            "end_byte": 30638,
+            "start_line": 1022,
+            "end_line": 1028
+          },
+          "header_span": {
+            "start_byte": 30487,
+            "end_byte": 30549,
+            "start_line": 1022,
+            "end_line": 1023
+          },
+          "body_span": {
+            "start_byte": 30549,
+            "end_byte": 30638,
+            "start_line": 1023,
+            "end_line": 1028
+          },
+          "header": "\nvoid BuiltStyledStreamWriter::pushValue(String const& value) ",
+          "text": "\nvoid BuiltStyledStreamWriter::pushValue(String const& value) {\n  if (addChildValues_)\n    childValues_.push_back(value);\n  else\n    *sout_ << value;\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "BuiltStyledStreamWriter::writeIndent",
+          "span": {
+            "start_byte": 30639,
+            "end_byte": 31020,
+            "start_line": 1029,
+            "end_line": 1040
+          },
+          "header_span": {
+            "start_byte": 30639,
+            "end_byte": 30684,
+            "start_line": 1029,
+            "end_line": 1030
+          },
+          "body_span": {
+            "start_byte": 30684,
+            "end_byte": 31020,
+            "start_line": 1030,
+            "end_line": 1040
+          },
+          "header": "\nvoid BuiltStyledStreamWriter::writeIndent() ",
+          "text": "\nvoid BuiltStyledStreamWriter::writeIndent() {\n  // blep intended this to look at the so-far-written string\n  // to determine whether we are already indented, but\n  // with a stream we cannot do that. So we rely on some saved state.\n  // The caller checks indented_.\n\n  if (!indentation_.empty()) {\n    // In this case, drop newlines too.\n    *sout_ << '\\n' << indentString_;\n  }\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "BuiltStyledStreamWriter::writeWithIndent",
+          "span": {
+            "start_byte": 31021,
+            "end_byte": 31169,
+            "start_line": 1041,
+            "end_line": 1047
+          },
+          "header_span": {
+            "start_byte": 31021,
+            "end_byte": 31089,
+            "start_line": 1041,
+            "end_line": 1042
+          },
+          "body_span": {
+            "start_byte": 31089,
+            "end_byte": 31169,
+            "start_line": 1042,
+            "end_line": 1047
+          },
+          "header": "\nvoid BuiltStyledStreamWriter::writeWithIndent(String const& value) ",
+          "text": "\nvoid BuiltStyledStreamWriter::writeWithIndent(String const& value) {\n  if (!indented_)\n    writeIndent();\n  *sout_ << value;\n  indented_ = false;\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "BuiltStyledStreamWriter::indent",
+          "span": {
+            "start_byte": 31170,
+            "end_byte": 31244,
+            "start_line": 1048,
+            "end_line": 1049
+          },
+          "header_span": {
+            "start_byte": 31170,
+            "end_byte": 31210,
+            "start_line": 1048,
+            "end_line": 1049
+          },
+          "body_span": {
+            "start_byte": 31210,
+            "end_byte": 31244,
+            "start_line": 1049,
+            "end_line": 1049
+          },
+          "header": "\nvoid BuiltStyledStreamWriter::indent() ",
+          "text": "\nvoid BuiltStyledStreamWriter::indent() { indentString_ += indentation_; }",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "BuiltStyledStreamWriter::unindent",
+          "span": {
+            "start_byte": 31245,
+            "end_byte": 31413,
+            "start_line": 1050,
+            "end_line": 1054
+          },
+          "header_span": {
+            "start_byte": 31245,
+            "end_byte": 31287,
+            "start_line": 1050,
+            "end_line": 1051
+          },
+          "body_span": {
+            "start_byte": 31287,
+            "end_byte": 31413,
+            "start_line": 1051,
+            "end_line": 1054
+          },
+          "header": "\nvoid BuiltStyledStreamWriter::unindent() ",
+          "text": "\nvoid BuiltStyledStreamWriter::unindent() {\n  assert(indentString_.size() >= indentation_.size());\n  indentString_.resize(indentString_.size() - indentation_.size());\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "BuiltStyledStreamWriter::writeCommentBeforeValue",
+          "span": {
+            "start_byte": 31414,
+            "end_byte": 31987,
+            "start_line": 1055,
+            "end_line": 1074
+          },
+          "header_span": {
+            "start_byte": 31414,
+            "end_byte": 31488,
+            "start_line": 1055,
+            "end_line": 1056
+          },
+          "body_span": {
+            "start_byte": 31488,
+            "end_byte": 31987,
+            "start_line": 1056,
+            "end_line": 1074
+          },
+          "header": "\nvoid BuiltStyledStreamWriter::writeCommentBeforeValue(Value const& root) ",
+          "text": "\nvoid BuiltStyledStreamWriter::writeCommentBeforeValue(Value const& root) {\n  if (cs_ == CommentStyle::None)\n    return;\n  if (!root.hasComment(commentBefore))\n    return;\n\n  if (!indented_)\n    writeIndent();\n  const String& comment = root.getComment(commentBefore);\n  String::const_iterator iter = comment.begin();\n  while (iter != comment.end()) {\n    *sout_ << *iter;\n    if (*iter == '\\n' && ((iter + 1) != comment.end() && *(iter + 1) == '/'))\n      // writeIndent();  // would write extra newline\n      *sout_ << indentString_;\n    ++iter;\n  }\n  indented_ = false;\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "BuiltStyledStreamWriter::writeCommentAfterValueOnSameLine",
+          "span": {
+            "start_byte": 31988,
+            "end_byte": 32340,
+            "start_line": 1075,
+            "end_line": 1087
+          },
+          "header_span": {
+            "start_byte": 31988,
+            "end_byte": 32076,
+            "start_line": 1075,
+            "end_line": 1077
+          },
+          "body_span": {
+            "start_byte": 32076,
+            "end_byte": 32340,
+            "start_line": 1077,
+            "end_line": 1087
+          },
+          "header": "\nvoid BuiltStyledStreamWriter::writeCommentAfterValueOnSameLine(\n    Value const& root) ",
+          "text": "\nvoid BuiltStyledStreamWriter::writeCommentAfterValueOnSameLine(\n    Value const& root) {\n  if (cs_ == CommentStyle::None)\n    return;\n  if (root.hasComment(commentAfterOnSameLine))\n    *sout_ << \" \" + root.getComment(commentAfterOnSameLine);\n\n  if (root.hasComment(commentAfter)) {\n    writeIndent();\n    *sout_ << root.getComment(commentAfter);\n  }\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "BuiltStyledStreamWriter::hasCommentForValue",
+          "span": {
+            "start_byte": 32352,
+            "end_byte": 32562,
+            "start_line": 1090,
+            "end_line": 1094
+          },
+          "header_span": {
+            "start_byte": 32352,
+            "end_byte": 32421,
+            "start_line": 1090,
+            "end_line": 1090
+          },
+          "body_span": {
+            "start_byte": 32421,
+            "end_byte": 32562,
+            "start_line": 1090,
+            "end_line": 1094
+          },
+          "header": "bool BuiltStyledStreamWriter::hasCommentForValue(const Value& value) ",
+          "text": "bool BuiltStyledStreamWriter::hasCommentForValue(const Value& value) {\n  return value.hasComment(commentBefore) ||\n         value.hasComment(commentAfterOnSameLine) ||\n         value.hasComment(commentAfter);\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "StreamWriterBuilder::newStreamWriter",
+          "span": {
+            "start_byte": 32859,
+            "end_byte": 34434,
+            "start_line": 1104,
+            "end_line": 1145
+          },
+          "header_span": {
+            "start_byte": 32859,
+            "end_byte": 32918,
+            "start_line": 1104,
+            "end_line": 1104
+          },
+          "body_span": {
+            "start_byte": 32918,
+            "end_byte": 34434,
+            "start_line": 1104,
+            "end_line": 1145
+          },
+          "header": "StreamWriter* StreamWriterBuilder::newStreamWriter() const ",
+          "text": "StreamWriter* StreamWriterBuilder::newStreamWriter() const {\n  const String indentation = settings_[\"indentation\"].asString();\n  const String cs_str = settings_[\"commentStyle\"].asString();\n  const String pt_str = settings_[\"precisionType\"].asString();\n  const bool eyc = settings_[\"enableYAMLCompatibility\"].asBool();\n  const bool dnp = settings_[\"dropNullPlaceholders\"].asBool();\n  const bool usf = settings_[\"useSpecialFloats\"].asBool();\n  const bool emitUTF8 = settings_[\"emitUTF8\"].asBool();\n  unsigned int pre = settings_[\"precision\"].asUInt();\n  CommentStyle::Enum cs = CommentStyle::All;\n  if (cs_str == \"All\") {\n    cs = CommentStyle::All;\n  } else if (cs_str == \"None\") {\n    cs = CommentStyle::None;\n  } else {\n    throwRuntimeError(\"commentStyle must be 'All' or 'None'\");\n  }\n  PrecisionType precisionType(significantDigits);\n  if (pt_str == \"significant\") {\n    precisionType = PrecisionType::significantDigits;\n  } else if (pt_str == \"decimal\") {\n    precisionType = PrecisionType::decimalPlaces;\n  } else {\n    throwRuntimeError(\"precisionType must be 'significant' or 'decimal'\");\n  }\n  String colonSymbol = \" : \";\n  if (eyc) {\n    colonSymbol = \": \";\n  } else if (indentation.empty()) {\n    colonSymbol = \":\";\n  }\n  String nullSymbol = \"null\";\n  if (dnp) {\n    nullSymbol.clear();\n  }\n  if (pre > 17)\n    pre = 17;\n  String endingLineFeedSymbol;\n  return new BuiltStyledStreamWriter(indentation, cs, colonSymbol, nullSymbol,\n                                     endingLineFeedSymbol, usf, emitUTF8, pre,\n                                     precisionType);\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "StreamWriterBuilder::validate",
+          "span": {
+            "start_byte": 34435,
+            "end_byte": 35019,
+            "start_line": 1146,
+            "end_line": 1168
+          },
+          "header_span": {
+            "start_byte": 34435,
+            "end_byte": 34499,
+            "start_line": 1146,
+            "end_line": 1147
+          },
+          "body_span": {
+            "start_byte": 34499,
+            "end_byte": 35019,
+            "start_line": 1147,
+            "end_line": 1168
+          },
+          "header": "\nbool StreamWriterBuilder::validate(Json::Value* invalid) const ",
+          "text": "\nbool StreamWriterBuilder::validate(Json::Value* invalid) const {\n  static const auto& valid_keys = *new std::set<String>{\n      \"indentation\",\n      \"commentStyle\",\n      \"enableYAMLCompatibility\",\n      \"dropNullPlaceholders\",\n      \"useSpecialFloats\",\n      \"emitUTF8\",\n      \"precision\",\n      \"precisionType\",\n  };\n  for (auto si = settings_.begin(); si != settings_.end(); ++si) {\n    auto key = si.name();\n    if (valid_keys.count(key))\n      continue;\n    if (invalid)\n      (*invalid)[key] = *si;\n    else\n      return false;\n  }\n  return invalid ? invalid->empty() : true;\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "StreamWriterBuilder::setDefaults",
+          "span": {
+            "start_byte": 35118,
+            "end_byte": 35586,
+            "start_line": 1174,
+            "end_line": 1185
+          },
+          "header_span": {
+            "start_byte": 35118,
+            "end_byte": 35179,
+            "start_line": 1174,
+            "end_line": 1174
+          },
+          "body_span": {
+            "start_byte": 35179,
+            "end_byte": 35586,
+            "start_line": 1174,
+            "end_line": 1185
+          },
+          "header": "void StreamWriterBuilder::setDefaults(Json::Value* settings) ",
+          "text": "void StreamWriterBuilder::setDefaults(Json::Value* settings) {\n  //! [StreamWriterBuilderDefaults]\n  (*settings)[\"commentStyle\"] = \"All\";\n  (*settings)[\"indentation\"] = \"\\t\";\n  (*settings)[\"enableYAMLCompatibility\"] = false;\n  (*settings)[\"dropNullPlaceholders\"] = false;\n  (*settings)[\"useSpecialFloats\"] = false;\n  (*settings)[\"emitUTF8\"] = false;\n  (*settings)[\"precision\"] = 17;\n  (*settings)[\"precisionType\"] = \"significant\";\n  //! [StreamWriterBuilderDefaults]\n}",
+          "children": []
+        },
+        {
+          "kind": "function",
+          "name": "writeString",
+          "span": {
+            "start_byte": 35587,
+            "end_byte": 35810,
+            "start_line": 1186,
+            "end_line": 1192
+          },
+          "header_span": {
+            "start_byte": 35587,
+            "end_byte": 35664,
+            "start_line": 1186,
+            "end_line": 1187
+          },
+          "body_span": {
+            "start_byte": 35664,
+            "end_byte": 35810,
+            "start_line": 1187,
+            "end_line": 1192
+          },
+          "header": "\nString writeString(StreamWriter::Factory const& factory, Value const& root) ",
+          "text": "\nString writeString(StreamWriter::Factory const& factory, Value const& root) {\n  OStringStream sout;\n  StreamWriterPtr const writer(factory.newStreamWriter());\n  writer->write(root, &sout);\n  return std::move(sout).str();\n}",
+          "children": []
+        }
+      ]
+    },
+    {
+      "kind": "other",
+      "name": null,
+      "span": {
+        "start_byte": 36007,
+        "end_byte": 36026,
+        "start_line": 1201,
+        "end_line": 1202
+      },
+      "header_span": null,
+      "body_span": null,
+      "header": null,
+      "text": " // namespace Json\n",
+      "children": []
+    }
+  ]
+}

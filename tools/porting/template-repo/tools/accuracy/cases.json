@@ -1,0 +1,6 @@
+[
+  {"name":"smoke-scalar","json":{"a":1,"b":true,"c":null,"s":"x\n"}},
+  {"name":"utf-escape","json":{"s":"héllø"},"cfg":{"emitUTF8":false}},
+  {"name":"utf-utf8","json":{"s":"héllø"},"cfg":{"emitUTF8":true}},
+  {"name":"floats","json":{"x":1.5,"y":1.0,"z":1e-6},"cfg":{"precision":17,"precisionType":"significant"}}
+]

@@ -1,0 +1,15 @@
+# MCP Requirements
+
+The MCP server implementation requires the Model Context Protocol package:
+
+```bash
+pip install mcp
+```
+
+For development and testing:
+
+```bash
+pip install mcp[dev]
+```
+
+Note: The current `server.py` is a template showing the structure. A production implementation would need proper MCP integration and AI model connectivity for chunk conversion.

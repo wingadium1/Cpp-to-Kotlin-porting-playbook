@@ -1,0 +1,82 @@
+{
+  "model_selection": {
+    "description": "MCP Model Selection Strategy for C++ to Kotlin Conversion",
+    "conversion_tasks": {
+      "heavy_work": {
+        "description": "Code conversion, chunk processing, basic transformations",
+        "recommended_models": [
+          "gpt-4o",
+          "gpt-4-turbo",
+          "claude-3-5-haiku",
+          "claude-3-haiku"
+        ],
+        "cost_priority": "low_cost",
+        "tasks": [
+          "convert_chunk",
+          "syntax_transformation", 
+          "basic_code_generation",
+          "placeholder_filling",
+          "simple_refactoring"
+        ]
+      },
+      "thinking_work": {
+        "description": "Strategic planning, complex reasoning, architecture decisions",
+        "recommended_models": [
+          "claude-3-5-sonnet",
+          "gpt-o1-preview",
+          "gpt-o1-mini",
+          "claude-3-opus"
+        ],
+        "cost_priority": "high_capability",
+        "tasks": [
+          "build_skeleton",
+          "validate_chunk",
+          "assemble_file",
+          "architectural_planning",
+          "complex_reasoning",
+          "error_diagnosis",
+          "workflow_orchestration"
+        ]
+      }
+    }
+  },
+  "placeholder_config": {
+    "description": "Unique placeholder system to avoid conflicts with existing TODO comments",
+    "placeholders": {
+      "CONVERSION_IMPORTS_PLACEHOLDER": "Location for adding necessary imports based on converted chunks",
+      "CONVERSION_CONSTANTS_PLACEHOLDER": "Location for C++ #defines and const values",
+      "CONVERSION_CLASS_DOC_PLACEHOLDER": "Location for class-level documentation",
+      "CONVERSION_MEMBER_VARS_PLACEHOLDER": "Location for C++ member variables converted to Kotlin properties",
+      "CONVERSION_CONSTRUCTOR_IMPL_PLACEHOLDER": "Location for constructor implementation",
+      "CONVERSION_METHOD_DOC_PLACEHOLDER": "Location for method documentation",
+      "CONVERSION_VARS_PLACEHOLDER": "Location for local variable declarations",
+      "CONVERSION_LOGIC_PLACEHOLDER": "Location for main method/function logic",
+      "CONVERSION_RETURN_PLACEHOLDER": "Location for return statement implementation",
+      "CONVERSION_FUNCTION_DOC_PLACEHOLDER": "Location for function documentation",
+      "CONVERSION_CHUNK_START_<id>": "Marker for beginning of conversion chunk",
+      "CONVERSION_CHUNK_END_<id>": "Marker for end of conversion chunk"
+    }
+  },
+  "workflow_guidelines": {
+    "chunk_conversion": {
+      "model": "low_cost",
+      "prompt_template": "Convert this C++ code chunk to Kotlin, replacing CONVERSION_*_PLACEHOLDER with actual implementation:",
+      "context_needed": ["chunk_text", "surrounding_variables", "class_context"]
+    },
+    "skeleton_generation": {
+      "model": "high_capability", 
+      "prompt_template": "Analyze the C++ LST structure and generate a comprehensive Kotlin skeleton with proper placeholders:",
+      "context_needed": ["full_lst", "function_signatures", "class_hierarchy"]
+    },
+    "validation": {
+      "model": "high_capability",
+      "prompt_template": "Validate that the converted chunk fits properly into the skeleton structure:",
+      "context_needed": ["skeleton_structure", "converted_chunk", "neighboring_chunks"]
+    },
+    "assembly": {
+      "model": "high_capability",
+      "prompt_template": "Combine skeleton and converted chunks into a complete, compilable Kotlin file:",
+      "context_needed": ["skeleton", "all_chunks", "import_requirements"]
+    }
+  }
+}

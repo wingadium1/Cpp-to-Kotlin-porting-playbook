@@ -32,6 +32,11 @@ Purpose: Provide a reusable, model-aware workflow for porting C++ codebases to K
 - LST → Markdown: `lst/to_md.py`, `lst/to_md_all.py`
 - Symbol index: `lst/index_symbols.py`
 - LST structural comparator: `accuracy/lst_accuracy.py`
+- MCP chunked conversion orchestrator: `mcp/orchestrator.py`
+- MCP C++→Kotlin conversion server: `convert-mcp`
+    - `build_skeleton`: From LST, create a Kotlin file with method signatures.
+    - `convert_chunk`: Convert a C++ code chunk (function body, etc.) to Kotlin.
+    - `assemble_file`: Combine skeleton and converted chunks into a final Kotlin file.
 
 Note: Projects may use different paths. Provide a mapping (see Project Mapping section) so these abstract commands resolve to real locations.
 
@@ -55,6 +60,17 @@ python3 <lst>/index_symbols.py --out <lst_out>/symbols.index.json
 - Method: generate LSTs for source and ported files; compare with `accuracy/lst_accuracy.py`.
 - Mapping: normalize known symbol renames and ignore non-semantic tokens via a mapping file.
 - Signal: any structural diffs should be treated as regressions unless explicitly justified.
+
+## MCP Chunked Conversion (For Large Files)
+- Goal: handle large C++ files by converting in logical chunks (functions, methods, classes).
+- Workflow:
+  1.  **LST Generation**: `build_lst.py` creates an LST from the C++ source.
+  2.  **Chunking**: `chunker.py` splits the LST into a skeleton and convertible chunks (functions, methods).
+  3.  **Skeleton Build**: The `convert-mcp` server's `build_skeleton` tool generates a `.kt` file with method signatures.
+  4.  **Chunk Conversion**: The `convert_chunk` tool is called for each chunk to translate the C++ code to Kotlin.
+  5.  **Assembly**: The `assemble_file` tool combines the Kotlin skeleton with the converted code chunks.
+- Orchestrator: `mcp/orchestrator.py` manages the complete workflow, calling the above tools.
+- Benefits: scalable, parallel conversion; resumable on failures; maintains context.
 
 ## Kotlin Porting Guidance (Behavioral Parity)
 - Builder options parity: indentation, YAML colon spacing, drop nulls, useSpecialFloats, emitUTF8, precision, precisionType.
@@ -83,6 +99,7 @@ python3 <lst>/index_symbols.py --out <lst_out>/symbols.index.json
 - `<lst>`: path to LST tools.
 - `<lst_out>`: path for LST outputs.
 - `<accuracy>`: path to accuracy tools.
+- `<mcp>`: path to MCP tools.
 - `<kotlin_module>`: path to Kotlin module/CLI.
 - `<cpp_harness_bin>`: expected harness binary path.
 - `<kotlin_bin>`: installed Kotlin binary path.
@@ -91,5 +108,6 @@ Example mapping (generic template)
 - `<lst>` → `tools/lst`
 - `<lst_out>` → `tools/lst/out`
 - `<accuracy>` → `tools/accuracy`
+- `<mcp>` → `tools/mcp`
 - `<kotlin_module>` → `<path/to/your/kotlin/module>`
- 
+

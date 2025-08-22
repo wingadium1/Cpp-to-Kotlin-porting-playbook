@@ -1,0 +1,141 @@
+{
+  "ai_conversion_config": {
+    "version": "1.0",
+    "description": "AI-powered C++ to Kotlin conversion configuration",
+    
+    "default_provider": "mcp",
+    "fallback_provider": "fallback_python",
+    
+    "providers": {
+      "mcp": {
+        "enabled": true,
+        "description": "convert-mcp MCP server (handles Python scripts + AI internally)",
+        "endpoint": "mcp://convert-mcp",
+        "tools": {
+          "build_skeleton": "mcp_convert-mcp_build_skeleton",
+          "convert_chunk": "mcp_convert-mcp_convert_chunk", 
+          "validate_chunk": "mcp_convert-mcp_validate_chunk",
+          "assemble_file": "mcp_convert-mcp_assemble_file"
+        },
+        "settings": {
+          "package_name_default": "com.converted.kotlin",
+          "let_server_choose_method": true,
+          "prefer_ai_for_complex_chunks": true,
+          "trust_server_quality_scoring": true
+        }
+      },
+      
+      "fallback_python": {
+        "enabled": true,
+        "description": "Fallback to our Python-based conversion tools",
+        "tools": {
+          "tree_traversal_chunker": "tools/tree_traversal_chunker.py",
+          "systematic_converter": "tools/systematic_converter.py",
+          "kotlin_syntax_fixer": "tools/kotlin_syntax_fixer.py",
+          "chunk_tracker": "tools/chunk_tracker.py"
+        },
+        "settings": {
+          "use_when_mcp_unavailable": true,
+          "quality_threshold": 0.75
+        }
+      }
+    },
+    
+    "conversion_strategy": {
+      "chunk_optimization": {
+        "target_size_lines": 800,
+        "max_size_lines": 1500,
+        "min_size_lines": 100,
+        "preserve_function_boundaries": true,
+        "preserve_comment_blocks": true
+      },
+      
+      "model_selection_strategy": {
+        "mode": "cost_optimized",
+        "options": ["cost_optimized", "quality_first", "speed_first", "balanced"],
+        "cost_optimized": {
+          "conversion": "cheapest_available",
+          "validation": "highest_quality_available",
+          "assembly": "balanced"
+        },
+        "quality_first": {
+          "conversion": "highest_quality_available",
+          "validation": "highest_quality_available", 
+          "assembly": "highest_quality_available"
+        },
+        "speed_first": {
+          "conversion": "fastest_available",
+          "validation": "fastest_available",
+          "assembly": "fastest_available"
+        }
+      },
+      
+      "quality_thresholds": {
+        "auto_approve_score": 0.85,
+        "manual_review_score": 0.70,
+        "reject_score": 0.50,
+        "validation_required": true
+      },
+      
+      "retry_policy": {
+        "max_retries": 3,
+        "backoff_strategy": "exponential",
+        "fallback_to_different_provider": true,
+        "fallback_order": ["mcp", "fallback_python"]
+      }
+    },
+    
+    "conversion_rules": {
+      "comment_preservation": {
+        "preserve_all_comments": true,
+        "preserve_japanese_text": true,
+        "preserve_change_tracking": true,
+        "preserve_todo_items": true
+      },
+      
+      "code_conversion": {
+        "maintain_business_logic": true,
+        "preserve_algorithms": true,
+        "convert_to_idiomatic_kotlin": true,
+        "apply_null_safety": true,
+        "use_kotlin_conventions": true
+      },
+      
+      "validation_criteria": {
+        "comment_preservation_weight": 0.3,
+        "business_logic_accuracy_weight": 0.4,
+        "kotlin_syntax_correctness_weight": 0.2,
+        "idiomatic_kotlin_weight": 0.1
+      }
+    },
+    
+    "output_settings": {
+      "package_name": "com.converted.kotlin",
+      "class_name_prefix": "",
+      "class_name_suffix": "",
+      "generate_documentation": true,
+      "include_conversion_metadata": true,
+      "apply_kotlin_formatting": true
+    },
+    
+    "logging": {
+      "level": "INFO",
+      "log_file": "ai_conversion.log",
+      "log_api_calls": true,
+      "log_conversion_stats": true,
+      "include_performance_metrics": true
+    },
+    
+    "monitoring": {
+      "track_costs": true,
+      "track_performance": true,
+      "track_quality_metrics": true,
+      "generate_reports": true,
+      "alert_thresholds": {
+        "cost_per_conversion": 10.0,
+        "average_quality_score": 0.8,
+        "conversion_time_minutes": 30
+      }
+    }
+  }
+}
